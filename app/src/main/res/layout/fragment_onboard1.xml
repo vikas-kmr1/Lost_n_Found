@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorfragment1"
+    >
+
+
+    <TextView
+        android:id="@+id/man_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:elevation="2sp"
+        android:fontFamily="@font/antic_slab"
+        android:gravity="left"
+        android:padding="2sp"
+        android:text="One-Stop Destination \n
+        for all your \nLost and Found items."
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/man_animation"
+        app:layout_constraintVertical_bias="0.813"
+        tools:ignore="RtlCompat" />
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        app:lottie_rawRes="@raw/man_firefind_animation"
+        app:lottie_loop="true"
+        app:lottie_imageAssetsFolder="images"
+        app:lottie_autoPlay="true"
+        android:id="@+id/man_animation"
+        android:elevation="2sp"/>
+
+
+    <ImageView
+        android:layout_width="70sp"
+        android:layout_height="30sp"
+        android:src="@drawable/tab1c"
+        android:id="@+id/tab1"
+        android:layout_margin="5sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/man_desc"
+        app:layout_constraintVertical_bias="0.93"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorfragment2">
+
+
+    <TextView
+        android:id="@+id/chat_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:elevation="2sp"
+        android:fontFamily="@font/antic_slab"
+        android:gravity="center"
+        android:text="Maintain your privacy \n while helping out others."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+
+        android:textSize="28sp"
+
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_animation"
+        app:layout_constraintVertical_bias="0.800" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="450sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        app:lottie_rawRes="@raw/live_chat_animation"
+        app:lottie_loop="true"
+        app:lottie_imageAssetsFolder="images"
+        app:lottie_autoPlay="true"
+        android:id="@+id/chat_animation"
+        android:elevation="2sp"/>
+
+
+    <ImageView
+        android:layout_width="70sp"
+        android:layout_height="30sp"
+        android:src="@drawable/tab2c"
+        android:id="@+id/tab2"
+        android:layout_margin="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chat_desc"
+        app:layout_constraintVertical_bias="0.93"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
