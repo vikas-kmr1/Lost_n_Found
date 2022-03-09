@@ -6,18 +6,19 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".googelmaps.MapsActivity">
+    tools:context=".home.MapsFragment0">
 
     <fragment
-        android:id="@+id/map"
+        android:id="@+id/mapF"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="43dp"
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintTop_toBottomOf="@id/toolbar"
         map:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -29,19 +30,38 @@
         android:alpha="1"
         android:foregroundGravity="left"
         android:elevation="11dp"
-        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintBottom_toBottomOf="@id/toolbar"
         map:layout_constraintEnd_toEndOf="@+id/toolbar"
-        map:layout_constraintHorizontal_bias="0.38"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintHorizontal_bias="0.32"
+        map:layout_constraintStart_toStartOf="@id/toolbar"
+        map:layout_constraintTop_toTopOf="@id/toolbar"
         map:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AUGN Campus"
+        android:textColor="@color/white"
+        android:elevation="12dp"
+        android:fontFamily="@font/antic_slab"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        map:layout_constraintBottom_toBottomOf="@id/toolbar"
+        map:layout_constraintEnd_toEndOf="@+id/toolbar"
+        map:layout_constraintHorizontal_bias="0.13"
+        map:layout_constraintStart_toEndOf="@id/imageView"
+        map:layout_constraintTop_toTopOf="@id/toolbar"
+
+        />
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="38dp"
         android:alpha="0.6"
-        map:titleTextColor="@color/white"
+        android:layout_marginTop="-2dp"
+        map:titleTextColor="#FBFBFB"
         android:background="@drawable/action_curve"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
@@ -49,13 +69,11 @@
         android:contentInsetRight="0dp"
         android:elevation="10dp"
         android:gravity="center_horizontal"
-        android:minHeight="?attr/actionBarSize"
         map:layout_constraintBottom_toBottomOf="@+id/imageView"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        map:title=" AUGN Campus "
-        map:titleMarginStart="70dp">
+        >
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -65,19 +83,23 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55sp"
+        android:layout_height="55sp"
         android:id="@+id/fab1"
         map:elevation="1dp"
+        android:src="@drawable/augn_logo"
+        map:shapeAppearanceOverlay="@drawable/fabstyle"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.98"
         map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.75"
-        android:contentDescription="getting current location" >
+        android:backgroundTint="#FFE7EDE7"
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="0.78"
+        android:contentDescription="getting current location" >
+ </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <ImageView
         android:layout_width="35dp"
@@ -89,28 +111,31 @@
         android:elevation="11dp"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintHorizontal_bias="0.985"
+        map:layout_constraintHorizontal_bias="0.988"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.745"
+        map:layout_constraintVertical_bias="0.775"
         />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55sp"
+        android:layout_height="55sp"
         android:id="@+id/fab"
-        android:background="@color/white"
+        android:backgroundTint="#E7ECED"
+        map:shapeAppearanceOverlay="@drawable/fabstyle"
         android:src="@drawable/current_location"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.98"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.85"
+        map:layout_constraintVertical_bias="0.68"
         android:elevation="@dimen/cardview_default_elevation"
         android:contentDescription="getting current location" />
+
+
 
 
     <androidx.appcompat.widget.SearchView
@@ -121,21 +146,23 @@
         android:background="@drawable/searchtab_design"
         android:elevation="1dp"
         android:focusable="true"
+        android:autofillHints="name"
         android:clickable="true"
         map:queryHint="Search here"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxWidth="550dp"
         android:padding="8dp"
+        android:onClick="start_Autocomplete"
         map:searchIcon="@android:drawable/ic_menu_search"
         map:closeIcon="@android:drawable/ic_menu_close_clear_cancel"
         map:iconifiedByDefault="false"
-        map:layout_constraintBottom_toBottomOf="@+id/map"
+        map:layout_constraintBottom_toBottomOf="@id/mapF"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.4"
-
         map:layout_constraintTop_toBottomOf="@+id/toolbar"
         map:layout_constraintVertical_bias="0.0" />
+
 
 
 
