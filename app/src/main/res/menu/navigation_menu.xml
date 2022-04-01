@@ -5,7 +5,7 @@
     <item
         android:id="@+id/item0"
         android:title="Home"
-        android:icon="@drawable/ic_twotone_home_24"/>
+        android:icon="@drawable/bootom_nav_selector"/>
 
     <item
         android:id="@+id/item1"
