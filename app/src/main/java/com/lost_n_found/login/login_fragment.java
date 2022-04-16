@@ -2,17 +2,24 @@ package com.lost_n_found.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lost_n_found.R;
 import com.lost_n_found.home.home;
 
@@ -28,10 +35,14 @@ public class login_fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    EditText email;
-    EditText password;
-    TextView forget;
-    Button login;
+     private EditText email;
+    private EditText password;
+    private TextView forget;
+    private Button login;
+
+    private FirebaseAuth mAuth;
+// ...
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,6 +79,9 @@ public class login_fragment extends Fragment {
 
         }
 
+        // Initialize Firebase Auth
+
+
 
 
 
@@ -98,20 +112,69 @@ public class login_fragment extends Fragment {
         forget.animate().translationX(0).alpha(1).setDuration(600).setStartDelay(800).start();
         login.animate().translationX(0).alpha(1).setDuration(600).setStartDelay(800).start();
 
-        //TODO call after succesful login
+
+
+        //login authentication
+        mAuth = FirebaseAuth.getInstance();
+
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email_user = email.getText().toString();
+                String pass_user = password.getText().toString();
 
-                Intent intent= new Intent(getActivity(), home.class);
-                startActivity(intent);
-
+                loginFun(email_user,pass_user);
             }
         });
+
+
+
+
+
+        //TODO call after succesful login
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent intent= new Intent(getActivity(), home.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
         return root;
 
 
+
+    }
+
+    private void loginFun(String email_user, String pass_user) {
+
+
+        mAuth.signInWithEmailAndPassword(email_user, pass_user)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("LoginSuccessed", "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent= new Intent(getActivity(), home.class);
+                            startActivity(intent);
+                            Toast.makeText(getContext(), "Welcome Back!.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("LoginDeclined", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //  updateUI(null);
+                        }
+                    }
+                });
 
     }
 

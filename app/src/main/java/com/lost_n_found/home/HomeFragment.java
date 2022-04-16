@@ -1,5 +1,6 @@
 package com.lost_n_found.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.lost_n_found.R;
 
 /**
@@ -54,12 +56,27 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        ExtendedFloatingActionButton newPost = root.findViewById(R.id.newPost);
+        newPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),NewPost.class);
+                startActivity(intent);
+
+            }
+        });
+
+        return root;
     }
 }

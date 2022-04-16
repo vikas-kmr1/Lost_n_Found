@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="12dp"
-        android:hint="Username or Email"
+        android:hint=" Email"
         android:inputType="textEmailSubject"
         android:textColorHint="@color/ic_launcher_background"
         android:textColor="@color/black"

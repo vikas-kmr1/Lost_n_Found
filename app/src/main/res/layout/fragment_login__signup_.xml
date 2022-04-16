@@ -9,34 +9,11 @@
 
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_design"
-        android:elevation="12dp"
-        android:hint="Username "
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/ic_launcher_background"
-        android:textSize="20dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223"
-
-        app:layout_constraintWidth_percent=".8" />
-
-    <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:elevation="12dp"
-            android:hint="Email id"
-        android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
             android:textColorHint="@color/ic_launcher_background"
             android:background="@drawable/edit_text_design"
             android:paddingLeft="20dp"
@@ -45,13 +22,12 @@
             android:paddingBottom="10dp"
             android:textSize="20dp"
             android:id="@+id/email"
-        android:textColor="@color/black"
-            app:layout_constraintVertical_bias="0"
+            android:textColor="@color/black"
+            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username"
-            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".8" />
 
 
@@ -84,7 +60,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="12dp"
-        android:hint="Confirm Password"
+        android:hint="ConfirmPassword"
         android:background="@drawable/edit_text_design"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"

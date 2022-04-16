@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lost_n_found" >
+    package="com.lost_n_found">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -23,12 +23,15 @@
         android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lost_n_Found" >
-<!--        <activity-->
-<!--            android:name=".home.Navigation_Hamb"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/title_activity_navigation_ham_b"-->
-<!--            android:theme="@style/Theme.Lost_n_Found.NoActionBar" />-->
+        android:theme="@style/Theme.Lost_n_Found">
+        <activity
+            android:name=".home.NewPost"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".home.Navigation_Hamb" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="@string/title_activity_navigation_ham_b" -->
+        <!-- android:theme="@style/Theme.Lost_n_Found.NoActionBar" /> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -51,22 +54,21 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".onboard.Splashscreen"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

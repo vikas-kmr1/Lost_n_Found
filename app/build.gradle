@@ -50,8 +50,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-
+    implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.android.libraries.places:places:2.5.0'
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'

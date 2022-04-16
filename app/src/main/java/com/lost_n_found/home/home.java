@@ -30,10 +30,10 @@ public class home extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-
         FragmentTransaction Home= getSupportFragmentManager().beginTransaction();
         Home.replace(R.id.fragment_container_view_tag,new HomeFragment());
         Home.commit();
+
 
 
 

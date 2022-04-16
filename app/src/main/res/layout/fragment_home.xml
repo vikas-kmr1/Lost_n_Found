@@ -15,24 +15,7 @@
         android:text="Home" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="\@Vikas"
-        android:layout_marginBottom="45dp"
-        android:textColor="#4DFFFFFF"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textSize="40dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#4DFFFFFF"
-        android:hint="HOME"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textSize="66dp"/>
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -41,5 +24,30 @@
         android:gravity="fill_vertical"
         app:titleTextColor="@color/white"
         android:background="@color/black"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/floatLayout">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newPost"
+            android:gravity="center"
+            android:backgroundTint="#093D78"
+            android:padding="5dp"
+            android:elevation="20dp"
+            app:elevation="20dp"
+            app:icon="@drawable/add_new_post"
+            app:iconSize="44dp"
+            app:iconTint="#8EC7F6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/floatLayout"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
