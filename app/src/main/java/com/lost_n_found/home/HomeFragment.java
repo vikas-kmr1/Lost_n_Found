@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
@@ -67,12 +68,25 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+
         ExtendedFloatingActionButton newPost = root.findViewById(R.id.newPost);
+        ImageButton hamButton = root.findViewById(R.id.HamButton);
+
+
+
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),NewPost.class);
                 startActivity(intent);
+
+            }
+        });
+
+        hamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
 
             }
         });

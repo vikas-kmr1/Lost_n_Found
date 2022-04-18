@@ -42,6 +42,7 @@
 
             </LinearLayout>
             <LinearLayout
+
                 android:orientation="horizontal"
                 android:padding="1dp"
                 android:gravity="center"
@@ -49,13 +50,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:tint="@color/black"
+                    android:id="@+id/editProfileimg"
                     android:padding="5dp"
                     android:src="@drawable/ic_twotone_edit_24"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    app:tint="@color/black" />
                 <TextView
                     android:text="Edit "
+                    android:id="@+id/editProfiletxt"
                     android:focusable="true"
                     android:clickable="true"
                     android:textSize="16sp"
@@ -144,23 +147,7 @@
                     android:layout_height="wrap_content"
                     card_view:ignore="RtlCompat" />
 
-                <TextView
-                    android:text="Gender:"
-                    android:textSize="17sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="N/A"
-                    android:textSize="13sp"
-                    android:textColor="#ED5E5E5E"
-                    android:textStyle="normal"
-                    android:textAlignment="textStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:ignore="RtlCompat" />
+
 
 
             </LinearLayout>

@@ -15,70 +15,73 @@
         android:layout_height="250dp">
 
         <androidx.cardview.widget.CardView
-            app:cardCornerRadius="15dp"
-            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
             android:layout_marginTop="40dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="15dp"
             app:cardElevation="10dp"
             app:cardUseCompatPadding="true"
-            card_view:cardCornerRAdius="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="240dp">
+            card_view:cardCornerRAdius="5dp">
+
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="23dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="23dp"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_marginTop="15dp"
-                    android:text="Vikas kumar"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textColor="@color/black"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Vikas kumar"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="A41105219017"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
+                    android:text="A41105219017"
                     android:textColor="#5C5A5A"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="13sp"
+                    android:textStyle="normal" />
+
                 <View
-                    android:background="#79D6D1D1"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:background="#79D6D1D1" />
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
 
+                    <!--                    <ImageView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-
-<!--                        android:layout_gravity="center"-->
-<!--                        android:background="@drawable/ic_twotone_email_24"/>-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:background="@drawable/ic_twotone_email_24"/>-->
                     <TextView
-                        android:layout_weight="1"
-                        android:text="vickyrules1705@gmail.com"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="vickyrules1705@gmail.com"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -88,12 +91,13 @@
 
 
     </RelativeLayout>
+
     <com.google.android.material.imageview.ShapeableImageView
-        android:src="@drawable/augn_logo"
-        app:shapeAppearanceOverlay="@style/Circular"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_centerHorizontal="true"
         android:elevation="15dp"
         android:padding="5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="98dp"
-        android:layout_height="98dp"/>
+        android:src="@drawable/augn_logo"
+        app:shapeAppearanceOverlay="@style/Circular" />
 </RelativeLayout>

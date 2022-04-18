@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.lost_n_found.R;
 import com.lost_n_found.home.home;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link login_fragment#newInstance} factory method to
@@ -34,6 +37,7 @@ public class login_fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private  String regex = "^(.+)@(.+)$";
 
      private EditText email;
     private EditText password;
@@ -125,7 +129,36 @@ public class login_fragment extends Fragment {
                 String email_user = email.getText().toString();
                 String pass_user = password.getText().toString();
 
-                loginFun(email_user,pass_user);
+
+                try {
+
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(email_user);
+
+                    if (email_user.isEmpty()){
+                        email.setError("This field can't be empty!");
+                    }
+
+                    else if(pass_user.isEmpty()){
+                        password.setError("This field can't be empty!");
+                    }
+
+
+
+                    else if((!matcher.matches() || !email_user.endsWith(".com")) && !email_user.isEmpty()){
+                        Toast.makeText(getContext() ,"Enter valid Email!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else{
+                     loginFun(email_user, pass_user);}
+
+                }
+
+                catch (Exception e){
+                    Toast.makeText(getContext(),"Something went wrong!",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
@@ -140,6 +173,7 @@ public class login_fragment extends Fragment {
 //
 //                Intent intent= new Intent(getActivity(), home.class);
 //                startActivity(intent);
+
 //
 //            }
 //        });
@@ -150,28 +184,38 @@ public class login_fragment extends Fragment {
 
     }
 
+
+
     private void loginFun(String email_user, String pass_user) {
+
 
 
         mAuth.signInWithEmailAndPassword(email_user, pass_user)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("LoginSuccessed", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent= new Intent(getActivity(), home.class);
-                            startActivity(intent);
-                            Toast.makeText(getContext(), "Welcome Back!.",
+                        try {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("LoginSuccessed", "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent = new Intent(getActivity(), home.class);
+                                startActivity(intent);
+//                                getActivity().finish();
+                                Toast.makeText(getContext(), "Welcome Back!.",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("LoginDeclined", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getContext(), "Invalid Email or Password!",
+                                        Toast.LENGTH_SHORT).show();
+                                //  updateUI(null);
+                            }
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getContext(), "Authentication failed!",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("LoginDeclined", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //  updateUI(null);
                         }
                     }
                 });

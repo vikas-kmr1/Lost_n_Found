@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.lost_n_found.R;
 import com.lost_n_found.home.home;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Login_Signup_Fragment#newInstance} factory method to
@@ -44,6 +47,9 @@ public class Login_Signup_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private  String regex = "^(.+)@(.+)$";
+
 
     public Login_Signup_Fragment() {
         // Required empty public constructor
@@ -105,10 +111,47 @@ public class Login_Signup_Fragment extends Fragment {
             public void onClick(View view) {
                 String email_user = email.getText().toString();
                 String pass_user = password.getText().toString();
+                String c_pass = confirm_password.getText().toString();
+
+                try {
+
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(email_user);
+
+                    if (email_user.isEmpty()){
+                        email.setError("This field can't be empty!");
+                    }
+
+                    if((!matcher.matches() || !email_user.endsWith(".com")) && !email_user.isEmpty()){
+                        Toast.makeText(getContext() ,"Enter valid Email!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if(pass_user.isEmpty()){
+                        password.setError("This field can't be empty!");
+                    }
+
+                    else if(!pass_user.equals(c_pass) && !c_pass.isEmpty()){
+                        Toast.makeText(getContext() ,"Password not matched!", Toast.LENGTH_SHORT).show();
+                    }
+
+//                    else if(!Pattern.matches("[a-zA-Z0-9]", pass_user)){
+//                        Toast.makeText(getContext() ,"Password should be a combination of numbers and alphabets!", Toast.LENGTH_SHORT).show();
+//                    }
+
+                    else if(pass_user.length() < 8 || pass_user.length()>20){
+                        Toast.makeText(getContext() ,"Password sholud me of length (8 - 20)!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else{
+                        SignUpFun(email_user,pass_user);}
+
+                }
+
+                catch (Exception e){
+                    Toast.makeText(getContext(),"Something Went Wrong!",Toast.LENGTH_SHORT).show();
+                }
 
 
-
-                SignUpFun(email_user,pass_user);
             }
         });
 
@@ -127,20 +170,26 @@ public class Login_Signup_Fragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("signup successfully", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent= new Intent(getActivity(), home.class);
-                            startActivity(intent);
-                            Toast.makeText(getContext(), "Welcome",Toast.LENGTH_SHORT).show();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("Signup failed", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                        try {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("signup successfully", "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent = new Intent(getActivity(), home.class);
+                                startActivity(intent);
+//                                getActivity().finish();
+                                Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
+                                //updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("Signup failed", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(getContext(), "Authentication failed or user already exist!",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getContext() ,"Somethin went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

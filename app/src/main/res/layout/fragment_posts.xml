@@ -32,10 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#4DFFFFFF"
-        android:hint="POSTS"
+        android:hint="No Posts to display!"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:textSize="66dp"/>
+        android:textSize="36dp"/>
 
 
 

@@ -1,9 +1,12 @@
 package com.lost_n_found.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -60,6 +63,29 @@ public class ProfielFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profiel, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_profiel, container, false);
+        ImageView editProfileimg = root.findViewById(R.id.editProfileimg);
+        TextView editProfiletxt = root.findViewById(R.id.editProfiletxt);
+
+        editProfileimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startEditProf();
+            }
+        });
+        editProfiletxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startEditProf();
+
+            }
+        });
+
+        return root;
+    }
+
+    private void startEditProf() {
+        Intent intent = new Intent(getContext(),editProfile.class);
+        startActivity(intent);
     }
 }
