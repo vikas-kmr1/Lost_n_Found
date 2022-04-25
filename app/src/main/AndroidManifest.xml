@@ -31,7 +31,12 @@
         android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
+
+
         android:theme="@style/Theme.Lost_n_Found" >
+
+        <!--   android:largeHeap="true"
+        android:hardwareAccelerated="false"-->
         <activity
             android:name=".home.editProfile"
             android:exported="false" />
@@ -58,11 +63,11 @@
             android:name=".home.home"
             android:exported="true"
             android:screenOrientation="portrait" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".login.LoginActivity"
@@ -73,12 +78,12 @@
             android:exported="true"
             android:screenOrientation="portrait" >
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".MainActivity"

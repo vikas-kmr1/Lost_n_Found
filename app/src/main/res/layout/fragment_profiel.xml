@@ -24,7 +24,7 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 app:title="My Profile"
                 android:gravity="fill_vertical"
                 app:titleTextColor="@color/white"

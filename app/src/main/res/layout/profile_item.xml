@@ -29,7 +29,8 @@
                     android:padding="5dp"
                     android:src="@drawable/ic_twotone_account_circle_24"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    app:tint="@color/black" />
                 <TextView
                     android:text="Details"
                     android:textSize="16sp"

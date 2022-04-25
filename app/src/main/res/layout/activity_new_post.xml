@@ -38,7 +38,8 @@
                 android:focusable="true"
                 android:focusedByDefault="true"
                 android:padding="1dp"
-                android:src="@drawable/ic_baseline_arrow_back_24" />
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,6 +89,7 @@
             android:layout_height="wrap_content"
             android:text="Select an image"
             android:textSize="20dp"
+            android:textColor="@color/white"
             android:layout_marginBottom="5dp"
             android:layout_gravity="bottom"
             android:gravity="center"/>
@@ -155,10 +157,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="Lost: "
+                android:textColor="@color/white"
                 tools:layout_editor_absoluteX="89dp"
                 tools:layout_editor_absoluteY="276dp" />
 
@@ -167,7 +170,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="40dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="35dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -231,18 +235,24 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_twotone_description_24"
                 />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:background="@drawable/textbox"
+                android:layout_height="68dp">
             <EditText
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Description"
                 android:elevation="20dp"
-                android:background="@drawable/textbox"
+                android:layout_marginRight="2dp"
                 android:inputType="textMultiLine"
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:padding="10dp"
-                android:maxLength="200"/>
+                android:maxLines="10"
+                android:maxLength="250"/>
+            </ScrollView>
         </LinearLayout>
 
         <LinearLayout

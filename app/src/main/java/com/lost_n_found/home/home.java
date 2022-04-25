@@ -37,6 +37,7 @@ public class home extends AppCompatActivity {
 
 
 
+
         binding.bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int i) {
@@ -69,6 +70,8 @@ public class home extends AppCompatActivity {
                 return true;
             }
         });
+
+
 
 
 

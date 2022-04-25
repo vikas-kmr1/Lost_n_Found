@@ -35,6 +35,7 @@ public class Login_Signup_Fragment extends Fragment {
     Resources signinUsing;
     private FirebaseAuth mAuth;
     private EditText email;
+    private EditText fullname;
     private EditText password;
     private EditText confirm_password;
     private Button signup;
@@ -100,6 +101,7 @@ public class Login_Signup_Fragment extends Fragment {
 
         email = root.findViewById(R.id.email);
         password = root.findViewById(R.id.pass);
+        fullname = root.findViewById(R.id.fullname);
         confirm_password = root.findViewById(R.id.pass_confirm);
         signup = root.findViewById(R.id.sign_btn);
         
@@ -111,6 +113,7 @@ public class Login_Signup_Fragment extends Fragment {
             public void onClick(View view) {
                 String email_user = email.getText().toString();
                 String pass_user = password.getText().toString();
+                String full_n = fullname.getText().toString();
                 String c_pass = confirm_password.getText().toString();
 
                 try {
@@ -128,6 +131,14 @@ public class Login_Signup_Fragment extends Fragment {
 
                     if(pass_user.isEmpty()){
                         password.setError("This field can't be empty!");
+                    }
+
+                    if(c_pass.isEmpty()){
+                        confirm_password.setError("This field can't be empty!");
+                    }
+
+                    if(full_n.isEmpty()){
+                        fullname.setError("This field can't be empty!");
                     }
 
                     else if(!pass_user.equals(c_pass) && !c_pass.isEmpty()){
@@ -189,7 +200,7 @@ public class Login_Signup_Fragment extends Fragment {
                             }
                         }
                         catch (Exception e){
-                            Toast.makeText(getContext() ,"Somethin went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext() ,"Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

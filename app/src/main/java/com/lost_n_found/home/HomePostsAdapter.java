@@ -1,4 +1,4 @@
-package com.lost_n_found.login;
+package com.lost_n_found.home;
 
 import android.content.Context;
 
@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class Login_Singup_Adapter extends FragmentPagerAdapter {
+public class HomePostsAdapter extends FragmentPagerAdapter {
+
 
     private Context context;
 
     int total_Tabs;
 
-    public Login_Singup_Adapter(FragmentManager fm, Context context, int total_Tabs) {
+    public HomePostsAdapter(FragmentManager fm, Context context, int total_Tabs) {
         super(fm);
         this.context = context;
         this.total_Tabs = total_Tabs;
@@ -26,13 +27,15 @@ public class Login_Singup_Adapter extends FragmentPagerAdapter {
         return total_Tabs;
     }
 
+
+
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                login_fragment tab1 = new login_fragment();
+                LostFragment tab1 = new LostFragment();
                 return tab1;
             case 1:
-                Login_Signup_Fragment tab2 = new Login_Signup_Fragment();
+                FoundFragment tab2 = new FoundFragment();
                 return tab2;
 
             default:

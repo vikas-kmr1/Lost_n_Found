@@ -202,7 +202,7 @@ public class login_fragment extends Fragment {
                                 Intent intent = new Intent(getActivity(), home.class);
                                 startActivity(intent);
 //                                getActivity().finish();
-                                Toast.makeText(getContext(), "Welcome Back!.",
+                                Toast.makeText(getContext(), "Welcome Back!",
                                         Toast.LENGTH_SHORT).show();
                                 //updateUI(user);
                             } else {

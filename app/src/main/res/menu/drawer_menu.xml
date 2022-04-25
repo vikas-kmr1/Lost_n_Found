@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+<group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/edit_pfile_menu"
+        android:title="Edit Profile"
+        android:icon="@drawable/ic_twotone_edit_24"/>
+
+    <item
+        android:id="@+id/LogOut_menu"
+        android:title="Logout"
+        android:icon="@drawable/ic_twotone_logout_24"/>
+
+    <item
+        android:id="@+id/Rate_us_menu"
+        android:title="Rate us"
+        android:icon="@drawable/ic_twotone_star_rate_24"/>
+
+    <item
+        android:id="@+id/About_us_menu"
+        android:title="About Us"
+        android:icon="@drawable/ic_twotone_info_24"/>
+
+
+</group>
+
+</menu>

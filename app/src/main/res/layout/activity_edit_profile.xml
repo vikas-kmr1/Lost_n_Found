@@ -42,7 +42,8 @@
                     android:focusable="true"
                     android:focusedByDefault="true"
                     android:padding="1dp"
-                    android:src="@drawable/ic_baseline_arrow_back_24" />
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,6 +105,7 @@
                   android:layout_height="wrap_content"
                   android:text="Select an image"
                   android:textSize="18dp"
+                  android:textColor="@color/white"
                   android:layout_marginBottom="5dp"
                   android:layout_gravity="bottom"
                   android:gravity="center"/>
@@ -167,27 +169,31 @@
                 android:elevation="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="1dp"
-                    android:gravity="center"
-                    android:layout_alignParentStart="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="1dp">
+
                     <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_twotone_account_circle_24"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"/>
-                    <TextView
-                        android:text="Details"
+                        app:tint="@color/white" />
 
-                        android:textSize="16sp"
-                        android:layout_margin="5dp"
-                        android:textStyle="bold|normal"
-                        android:textColor="#F8FFFFFF"
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="Details"
+                        android:textColor="#F8FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold|normal" />
 
 
                 </LinearLayout>
@@ -209,7 +215,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="First Name:"
+                        android:text="First Name"
                         android:textSize="17sp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
