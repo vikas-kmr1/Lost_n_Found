@@ -1,6 +1,7 @@
 package com.lost_n_found.home;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,18 +14,26 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.lost_n_found.R;
 
 import java.io.FileNotFoundException;
@@ -32,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 public class NewPost extends AppCompatActivity {
@@ -49,10 +59,18 @@ public class NewPost extends AppCompatActivity {
     EditText contactText;
     RadioGroup radioGroup;
     RadioButton lostRBtn, foundRBtn;
+    ConstraintLayout constraintLayout;
+    LinearLayout linearLayoutimage;
+    LinearLayout linearLayoutdetails;
+    LottieAnimationView lottieAnimationView;
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+    private Uri targetUri = null;
+    String title,description,location,dateString,status = null,contact;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +96,24 @@ public class NewPost extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_Gp);
         lostRBtn = findViewById(R.id.radioButtonLost);
         foundRBtn = findViewById(R.id.radioButtonFound);
+        constraintLayout= findViewById(R.id.animationLayout);
+        linearLayoutimage= findViewById(R.id.imageEditView);
+        linearLayoutdetails= findViewById(R.id.detailsLayout);
+        lottieAnimationView = findViewById(R.id.success_animation);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference().child("posts");
+        progressDialog = new ProgressDialog(NewPost.this);
+        progressDialog.setCancelable(false);
 
         //browsing image whem clicked on cam icon
         camIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                postImg.setVisibility(View.VISIBLE);
+//                postImg.setVisibility(View*.VISIBLE);
 //                deleteIcon.setVisibility(View.VISIBLE);
 //                camIcon.setVisibility(View.GONE);
 //                imgTxt.setVisibility(View.GONE);
@@ -114,6 +139,7 @@ public class NewPost extends AppCompatActivity {
                 deleteIcon.setVisibility(View.GONE);
                 camIcon.setVisibility(View.VISIBLE);
                 imgTxt.setVisibility(View.VISIBLE);
+                targetUri = null;
             }
         });
 
@@ -150,12 +176,12 @@ public class NewPost extends AppCompatActivity {
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title,description,location,dateString,status = null,contact;
                 title = titleText.getText().toString();
                 description = descripText.getText().toString();
                 location = locationText.getText().toString();
                 contact = contactText.getText().toString();
                 dateString = dateText.getText().toString();
+
 
                 if(title.isEmpty()){
                     titleText.setError("This field can't be empty.");
@@ -177,7 +203,10 @@ public class NewPost extends AppCompatActivity {
                     Toast.makeText(NewPost.this, "Choose one option. (lost or found )", Toast.LENGTH_SHORT).show();
                 }
 
-                else{
+                else if(radioGroup.getCheckedRadioButtonId() != -1 && !description.isEmpty() && !location.isEmpty() && !title.isEmpty()){
+
+                    progressDialog.setMessage("uploading");
+                    progressDialog.show();
 
                     if (lostRBtn.isChecked()){
                         status="lost";
@@ -186,7 +215,46 @@ public class NewPost extends AppCompatActivity {
                         status="found";
                     }
 
-                    createPost(title,description,location,contact,dateString,status);
+
+                    if (targetUri != null)
+
+                   {
+
+                       try{
+
+                           String imgStr = title + (new Random().nextInt(1000) );
+
+                           storageReference.child(imgStr).putFile(targetUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                               @Override
+                               public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                   storageReference.child(imgStr).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                       @Override
+                                       public void onSuccess(Uri uri) {
+                                           String m = uri.getLastPathSegment().toString();
+                                           createPost(title,description,location,contact,dateString,status,m);
+                                       }
+                                   }).addOnFailureListener(new OnFailureListener() {
+                                       @Override
+                                       public void onFailure(@NonNull Exception e) {
+                                           Toast.makeText(NewPost.this, ""+"failed", Toast.LENGTH_SHORT).show();
+                                       }
+                                   });
+                               }
+                           });
+
+                       }
+                       catch (Exception e){
+
+                       }
+                   }
+                    else {
+
+                            createPost(title,description,location,contact,dateString,status,"N/A");
+
+                    }
+
+
                 }
 
 
@@ -197,10 +265,22 @@ public class NewPost extends AppCompatActivity {
 
     }
 
-    private void createPost(String title, String description, String location, String contact, String dateStr , String statusStr) {
+    private void createPost(String title, String description, String location, String contact, String dateStr , String statusStr,String imgUrl) {
        String uid = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact));
+        databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact,imgUrl)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+             progressDialog.dismiss();
+             constraintLayout.setVisibility(View.VISIBLE);
+             constraintLayout.bringToFront();
+             lottieAnimationView.playAnimation();
+             postBtn.setVisibility(View.GONE);
+             linearLayoutdetails.setVisibility(View.GONE);
+             linearLayoutimage.setVisibility(View.GONE);
+
+            }
+        });
 
     }
 
@@ -210,7 +290,8 @@ public class NewPost extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK){
-            Uri targetUri = data.getData();
+            targetUri = data.getData();
+
             Bitmap bitmap;
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
@@ -220,6 +301,7 @@ public class NewPost extends AppCompatActivity {
                 camIcon.setVisibility(View.GONE);
                 imgTxt.setVisibility(View.GONE);
             }
+
             catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

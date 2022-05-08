@@ -253,8 +253,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
                         .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
-                                startActivity(i);
+
                             }
                         }).show();
             }

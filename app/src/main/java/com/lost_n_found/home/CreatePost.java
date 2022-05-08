@@ -33,13 +33,14 @@ public class CreatePost {
         return contact;
     }
 
-    public CreatePost(String status, String title, String description, String location, String date, String contact) {
+    public CreatePost(String status, String title, String description, String location, String date, String contact ,String postImgUrl) {
         this.status = status;
         this.title = title;
         this.description = description;
         this.location = location;
         this.date = date;
         this.contact = contact;
+        this.postImgUrl = postImgUrl;
     }
 
     public CreatePost() {

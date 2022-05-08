@@ -117,6 +117,7 @@ public class ProfielFragment extends Fragment {
         progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Loading..");
         progressDialog.show();
+        progressDialog.setCancelable(false);
 
         // Attach a listener to read the data at our posts reference
         databaseReference.addValueEventListener(new ValueEventListener() {

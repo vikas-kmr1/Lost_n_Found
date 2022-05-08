@@ -8,6 +8,39 @@
     android:background="@color/quantum_vanillablueA100"
     tools:context=".home.NewPost">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:alpha="0.75"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:elevation="130dp"
+        android:id="@+id/animationLayout"
+        android:visibility="gone"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:lottie_rawRes="@raw/success"
+            app:lottie_loop="false"
+            android:foregroundGravity="center"
+            app:lottie_imageAssetsFolder="images"
+            android:id="@+id/success_animation"
+            android:elevation="132dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/postTitle"
         android:layout_width="match_parent"
@@ -58,7 +91,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/imageEdit"
+        android:id="@+id/imageEditView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="20dp"
@@ -142,7 +175,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageEdit">
+        app:layout_constraintTop_toBottomOf="@id/imageEditView">
 
         <RadioGroup
             android:id="@+id/radio_Gp"
@@ -276,6 +309,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/textbox"
                 android:elevation="20dp"
+                android:inputType="textPersonName"
                 android:hint="Where"
                 android:maxLength="60"
                 android:padding="10dp"
@@ -361,6 +395,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailsLayout" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
