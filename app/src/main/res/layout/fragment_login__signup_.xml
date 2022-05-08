@@ -8,6 +8,59 @@
    >
 
 
+    <LinearLayout
+        android:id="@+id/GenderRadio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:background="@drawable/edit_text_design"
+        app:layout_constraintVertical_bias="0.158"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8" >
+
+        <RadioGroup
+            android:id="@+id/genderRadios"
+            android:elevation="12dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="He/Him"
+                android:buttonTint="#0091EA"
+                android:elevation="12dp"
+                android:layout_marginEnd="65dp"
+                android:layout_gravity="start"
+                android:shadowColor="#0091EA"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="She/Her"
+                android:buttonTint="@color/quantum_pink300"
+                android:shadowColor="@color/quantum_pink300"
+                android:elevation="12dp"
+                android:textColor="@color/black"
+                />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -119,7 +172,7 @@
             android:id="@+id/sign_btn"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintVertical_bias="0"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

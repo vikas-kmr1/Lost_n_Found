@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="#093D78">
+    android:background="#093D78"
+    >
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="95dp"
-        android:layout_height="95dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:elevation="10dp"
         android:id="@+id/ham_head_img"
         android:src="@drawable/augn_logo"
@@ -18,39 +19,24 @@
         app:layout_constraintVertical_bias="0.4"
         app:shapeAppearance="@style/Circular" />
 
-    <TextView
-        android:id="@+id/ham_hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bangers"
-        android:text="Hello,"
-        android:textColor="@color/black"
-        android:textSize="25dp"
 
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ham_head_img"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/ham_username"
-        android:layout_width="wrap_content"
+        android:id="@+id/drawer_username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center_horizontal"
-
         android:fontFamily="@font/bangers"
-        android:text="Vikas Kumar_"
+        android:text="N/A"
         android:textAllCaps="true"
-        android:textColor="@color/black"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@id/ham_hello"
-        app:layout_constraintTop_toBottomOf="@id/ham_head_img"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

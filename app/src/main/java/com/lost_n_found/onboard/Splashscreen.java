@@ -1,8 +1,11 @@
 package com.lost_n_found.onboard;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -17,12 +20,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lost_n_found.R;
+import com.lost_n_found.home.home;
 
 public class Splashscreen extends AppCompatActivity {
 
-    LottieAnimationView lottieAnimationView;
+    ImageView iconView;
     TextView tag1,tag2,name,start;
 
     ImageView bg_img;
@@ -53,26 +58,40 @@ public class Splashscreen extends AppCompatActivity {
         tag2=findViewById(R.id.tag2);
         name=findViewById(R.id.app_name);
         bg_img=findViewById(R.id.bg_img);
-        lottieAnimationView=findViewById(R.id.lottieAnimationView);
-
-
-        viewPager=findViewById(R.id.liquid_swipe);
-        pagerAdapter=new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
-
-        animation= AnimationUtils.loadAnimation(this,R.anim.fade_onboard_anim);
-        viewPager.startAnimation(animation);
-
+        iconView=findViewById(R.id.iconView);
 
 
 
         //splash animation
-        tag1.animate().translationY(-2500).setDuration(1000).setStartDelay(5150);
-        tag2.animate().translationY(2500).setDuration(1000).setStartDelay(5150);
-        name.animate().translationY(2500).setDuration(1000).setStartDelay(5150);
-        bg_img.animate().translationY(2500).setDuration(1000).setStartDelay(5150);
-        lottieAnimationView.animate().translationY(2500).setDuration(1000).setStartDelay(5150);
+        tag1.animate().translationY(-2500).setDuration(1200).setStartDelay(2500);
+        tag2.animate().translationY(2500).setDuration(1200).setStartDelay(2500);
+        name.animate().translationY(2500).setDuration(1200).setStartDelay(2500);
+        bg_img.animate().translationY(2500).setDuration(1200).setStartDelay(2500);
+        iconView.animate().translationY(2500).setDuration(1200).setStartDelay(2500);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null){
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    Intent intent = new Intent(getApplicationContext(), home.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }, 1000);
+        }
+        else if(user == null) {
+            pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+            viewPager = findViewById(R.id.liquid_swipe);
+            viewPager.setAdapter(pagerAdapter);
+            animation = AnimationUtils.loadAnimation(this, R.anim.fade_onboard_anim);
+            viewPager.startAnimation(animation);
+
+        }
 
 
 
@@ -92,6 +111,8 @@ public class Splashscreen extends AppCompatActivity {
             super(fm);
         }
 
+
+
         @NonNull
         @Override
         public Fragment getItem(int position) {
@@ -99,7 +120,6 @@ public class Splashscreen extends AppCompatActivity {
             {
                 case 0:
                     OnBoardingFragment1 tab1=new OnBoardingFragment1();
-
                     return tab1;
                 case 1:
                     OnBoardingFragment2 tab2=new OnBoardingFragment2();
@@ -107,7 +127,6 @@ public class Splashscreen extends AppCompatActivity {
                     return tab2;
                 case 2:
                     OnBoardingFragment3 tab3=new OnBoardingFragment3();
-
                     return tab3;
             }
             return null;

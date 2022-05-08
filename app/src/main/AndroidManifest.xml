@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.lost_n_found" >
+    package="com.lost_n_found">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -9,9 +9,11 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
         tools:ignore="ProtectedPermissions" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -19,9 +21,12 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -31,18 +36,22 @@
         android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
-
-
-        android:theme="@style/Theme.Lost_n_Found" >
-
-        <!--   android:largeHeap="true"
-        android:hardwareAccelerated="false"-->
+        android:theme="@style/Theme.Lost_n_Found">
+        <activity
+            android:name=".home.AboutActivity"
+            android:exported="false" />
+        <!--
+           android:largeHeap="true"
+        android:hardwareAccelerated="false"
+        -->
         <activity
             android:name=".home.editProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.NewPost"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false"
+            android:screenOrientation="portrait" /> <!-- <activity -->
         <!-- android:name=".home.Navigation_Hamb" -->
         <!-- android:exported="true" -->
         <!-- android:label="@string/title_activity_navigation_ham_b" -->
@@ -62,12 +71,12 @@
         <activity
             android:name=".home.home"
             android:exported="true"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".login.LoginActivity"
@@ -76,14 +85,12 @@
         <activity
             android:name=".onboard.Splashscreen"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-
-
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

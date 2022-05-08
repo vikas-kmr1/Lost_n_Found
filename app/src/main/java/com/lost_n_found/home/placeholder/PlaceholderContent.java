@@ -23,7 +23,7 @@ public class PlaceholderContent {
      */
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 100;
 
     static {
         // Add some sample items.

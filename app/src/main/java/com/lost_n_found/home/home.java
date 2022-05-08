@@ -1,16 +1,22 @@
 package com.lost_n_found.home;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -33,6 +39,40 @@ public class home extends AppCompatActivity {
         FragmentTransaction Home= getSupportFragmentManager().beginTransaction();
         Home.replace(R.id.fragment_container_view_tag,new HomeFragment());
         Home.commit();
+
+        //checking network connection
+        boolean connected = false;
+        try {
+            ConnectivityManager connectivityManager = (ConnectivityManager)
+                    getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            connected = networkInfo != null && networkInfo.isAvailable() &&
+                    networkInfo.isConnected();
+            if (!connected){
+                AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).setIcon(R.drawable.no_net).setTitle("NO INTERNET").setMessage("turn on mobile data or wifi")
+                        .setPositiveButton("turn on", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+                                startActivity(i);
+
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+                                startActivity(i);
+                            }
+                        }).show();
+            }
+
+
+        } catch (Exception e) {
+            // System.out.println("CheckConnectivity Exception: " + e.getMessage());
+            Log.v("connectivity", e.toString());
+        }
 
 
 
@@ -124,6 +164,9 @@ public class home extends AppCompatActivity {
         });
 
 
+
+
+
     }
 
 
@@ -142,4 +185,4 @@ public class home extends AppCompatActivity {
 
     }
 
-}
+   }

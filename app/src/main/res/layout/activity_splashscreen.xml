@@ -37,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/app_name"
@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.763" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <TextView
         android:id="@+id/tag2"
@@ -77,23 +77,25 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bg_img"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.83" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:elevation="2sp"
-        android:id="@+id/lottieAnimationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:elevation="2dp"
+        app:shapeAppearance="@style/Circular"
+        android:padding="8dp"
+        android:background="@color/teal_200"
+        android:id="@+id/iconView"
+        android:layout_width="150dp"
+
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.428"
-        app:lottie_autoPlay="true"
-        app:lottie_imageAssetsFolder="images"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/welcome_animation" />
+        android:src="@mipmap/ic_launcher_new_round"
+        />
 
 
     <com.cuberto.liquid_swipe.LiquidPager

@@ -46,13 +46,17 @@
 
                 android:orientation="horizontal"
                 android:padding="1dp"
-                android:gravity="center"
+                android:gravity="center|start"
+
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/editProfileimg"
                     android:padding="5dp"
+                    android:clickable="true"
+                    android:background="@drawable/clickeffect"
+                    android:focusable="true"
                     android:src="@drawable/ic_twotone_edit_24"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -60,8 +64,10 @@
                 <TextView
                     android:text="Edit "
                     android:id="@+id/editProfiletxt"
-                    android:focusable="true"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/clickeffect"
+
                     android:textSize="16sp"
                     android:layout_margin="5dp"
                     android:textStyle="bold|normal"
@@ -90,6 +96,7 @@
 
 
                 <TextView
+
                     android:text="First Name:"
                     android:textSize="17sp"
                     android:textColor="@color/black"
@@ -99,6 +106,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:text="N/A"
+                    android:id="@+id/firstNameView"
                     android:textSize="13sp"
                     android:textColor="#ED5E5E5E"
                     android:textStyle="normal"
@@ -110,6 +118,7 @@
 
                 <TextView
                     android:text="Last Name"
+
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -120,6 +129,7 @@
 
                 <TextView
                     android:text="N/A"
+                    android:id="@+id/lastNameView"
                     android:textSize="13sp"
                     android:textColor="#ED5E5E5E"
                     android:textStyle="normal"
@@ -141,6 +151,7 @@
                 <TextView
                     android:text="N/A"
                     android:textSize="13sp"
+                    android:id="@+id/EnrView"
                     android:textColor="#ED5E5E5E"
                     android:textStyle="normal"
                     android:textAlignment="textStart"

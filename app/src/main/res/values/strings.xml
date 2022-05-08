@@ -15,4 +15,5 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_ham_nav">HamNavActivity</string>
+    <string name="app_des">Almost all of us have either lost or found an item in the AUGN premises but could not return it. This app is the solution to all such problems.</string>
 </resources>

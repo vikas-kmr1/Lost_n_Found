@@ -7,7 +7,6 @@
     tools:context=".home.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:headerLayout="@layout/drawer_headert"
             app:menu="@menu/drawer_menu" />
 
 
@@ -49,22 +47,23 @@
                 android:id="@+id/chatButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="7dp"
+                android:focusable="true"
                 android:backgroundTint="@color/black"
-                android:backgroundTintMode="src_in"
+                android:clickable="true"
                 android:elevation="20dp"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
                 android:src="@drawable/ic_chat"
                 app:layout_constraintEnd_toEndOf="@id/toolbar"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:layout_constraintTop_toTopOf="@id/toolbar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar"
+                app:layout_constraintHorizontal_bias="1"
                 app:tint="@color/white" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:elevation="1dp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +72,7 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layoutHome"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@drawable/hometabcurve"
                     android:backgroundTint="@color/black"
                     android:elevation="20dp"
@@ -90,12 +89,14 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpagerHome"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="50dp"
+                    android:scrollbars="vertical"
+                    android:scrollbarSize="@dimen/activity_vertical_margin"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent="1"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tab_layoutHome"
                     app:layout_constraintVertical_bias="0.0" />
 

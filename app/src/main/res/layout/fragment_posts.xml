@@ -7,36 +7,65 @@
     tools:context=".home.PostsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="1dp">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="My Posts"
+        android:id="@+id/postTollbar"
         app:titleTextColor="@color/white"
-        android:background="@color/black"/>
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
 
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postTollbar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="\@Vikas"
-        android:layout_marginBottom="45dp"
-        android:textColor="#4DFFFFFF"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textSize="40dp"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layoutPost"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="0dp"
+            android:background="@drawable/hometabcurve"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:tabIndicatorColor="#093D78"
+            app:tabTextColor="@color/white" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#4DFFFFFF"
-        android:hint="No Posts to display!"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textSize="36dp"/>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpagerPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
+            android:scrollbars="vertical"
+            android:elevation="14dp"
+            android:scrollbarSize="@dimen/activity_vertical_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

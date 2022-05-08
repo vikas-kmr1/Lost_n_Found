@@ -35,23 +35,23 @@
                 android:layout_height="30dp"/>
             <TextView
                 android:text="Mobile"
-                android:layout_marginStart="10dp"
-                android:textSize="14sp"
+
+                android:textSize="17sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="#605E5E"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-
         </LinearLayout>
+
         <TextView
             android:text="+91 0000000000"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="15dp"
+            android:id="@+id/phoneViewBottom"
+            android:textSize="13sp"
+            android:textColor="#ED5E5E5E"
+            android:textStyle="normal"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -77,22 +77,23 @@
                 android:layout_height="30dp"/>
             <TextView
                 android:text="Email"
-                android:layout_marginStart="10dp"
-                android:textSize="14sp"
+
+                android:textSize="17sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="#605E5E"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
         </LinearLayout>
         <TextView
-            android:text="vickyrules1705@gmail.com"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginStart="25dp"
+            android:id="@+id/emailViewBottom"
+            android:text="N/A"
+            android:textSize="13sp"
+            android:textColor="#ED5E5E5E"
+            android:textStyle="normal"
+            android:layout_marginStart="40dp"
             android:layout_marginBottom="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

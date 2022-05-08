@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
+    android:padding="5dp"
     android:name="com.lost_n_found.home.LostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
+    android:scrollbarStyle="outsideOverlay"
     app:layoutManager="LinearLayoutManager"
     tools:context=".home.LostFragment"
-    tools:listitem="@layout/fragment_lost">
-</androidx.recyclerview.widget.RecyclerView>
+    tools:listitem="@layout/fragment_lost" />

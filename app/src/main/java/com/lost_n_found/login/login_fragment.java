@@ -1,7 +1,13 @@
 package com.lost_n_found.login;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +19,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +60,7 @@ public class login_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ConnectivityManager connectivityManager;
 
     public login_fragment() {
         // Required empty public constructor
@@ -122,6 +132,29 @@ public class login_fragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
 
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(email.getText()))
+                {
+                    email.setError("Enter Your registered email ");
+                }
+                else {
+                    mAuth.sendPasswordResetEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getContext(), "Password Reset email sent ", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "Email not registered", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,11 +165,51 @@ public class login_fragment extends Fragment {
 
                 try {
 
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    //checking network connection
+                    boolean connected = false;
+                    try {
+
+                        user = mAuth.getCurrentUser();
+                        connectivityManager = (ConnectivityManager)
+                                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                        connected = networkInfo != null && networkInfo.isAvailable() &&
+                                networkInfo.isConnected();
+                        if (!connected){
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setIcon(R.drawable.no_net).setTitle("NO INTERNET").setMessage("turn on mobile data or wifi")
+                                    .setPositiveButton("turn on", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+                                            startActivity(i);
+
+                                        }
+                                    })
+                                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent i = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+                                            startActivity(i);
+                                        }
+                                    }).show();
+                        }
+
+
+                    } catch (Exception e) {
+                        // System.out.println("CheckConnectivity Exception: " + e.getMessage());
+                        Log.v("connectivity", e.toString());
+                    }
+
                     Pattern pattern = Pattern.compile(regex);
                     Matcher matcher = pattern.matcher(email_user);
 
                     if (email_user.isEmpty()){
                         email.setError("This field can't be empty!");
+                    }
+                    if (!connected){
+                        Toast.makeText(getContext(), "Turn on mobile data", Toast.LENGTH_SHORT).show();
                     }
 
                     else if(pass_user.isEmpty()){
@@ -149,13 +222,15 @@ public class login_fragment extends Fragment {
                         Toast.makeText(getContext() ,"Enter valid Email!", Toast.LENGTH_SHORT).show();
                     }
 
+
                     else{
                      loginFun(email_user, pass_user);}
 
                 }
 
                 catch (Exception e){
-                    Toast.makeText(getContext(),"Something went wrong!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Something went wrong!"+e,Toast.LENGTH_SHORT).show();
+
                 }
 
 
@@ -194,16 +269,26 @@ public class login_fragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         try {
+                            FirebaseUser user = mAuth.getCurrentUser();
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("LoginSuccessed", "signInWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
+                            if (!user.isEmailVerified()){
+                                Toast.makeText(getContext(), "verify your email", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
                                 Intent intent = new Intent(getActivity(), home.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                requireActivity().finish();
+                                // getActivity(Splashscreen)
+
+
                                 startActivity(intent);
-//                                getActivity().finish();
                                 Toast.makeText(getContext(), "Welcome Back!",
                                         Toast.LENGTH_SHORT).show();
+                            }
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.

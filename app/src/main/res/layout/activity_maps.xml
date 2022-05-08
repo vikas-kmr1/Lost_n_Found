@@ -153,7 +153,7 @@
         android:inputType="text"
         android:maxWidth="550dp"
         android:padding="8dp"
-        android:onClick="start_Autocomplete"
+
         map:searchIcon="@android:drawable/ic_menu_search"
         map:closeIcon="@android:drawable/ic_menu_close_clear_cancel"
         map:iconifiedByDefault="false"

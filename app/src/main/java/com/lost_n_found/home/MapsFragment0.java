@@ -97,48 +97,48 @@ public class MapsFragment0 extends Fragment {
         String api_Key= getString(R.string.google_maps_key);
 
         searchView = (SearchView) root.findViewById(R.id.search_Tab);
+        try {
 
-        if(!Places.isInitialized())
-        {
-            Places.initialize(getContext(),api_Key);
-        }
-        placesClient=Places.createClient(getContext());
-
-
+            if (!Places.isInitialized()) {
+                Places.initialize(getContext(), api_Key);
+            }
+            placesClient = Places.createClient(getContext());
 
 
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
 
+                public boolean onQueryTextSubmit(String query) {
+                    List<Address> addresses = null;
+                    String loc_name = searchView.getQuery().toString();
+                    Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+                    try {
+                        addresses = geocoder.getFromLocationName(loc_name, 5);
+                    } catch (IOException | ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
 
+                    Address address = addresses.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(loc_name));
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                    Toast.makeText(getContext(), address.getLatitude() + " " + address.getLongitude(), Toast.LENGTH_LONG).show();
 
-            public boolean onQueryTextSubmit(String query) {
-                List<Address> addresses = null;
-                String loc_name = searchView.getQuery().toString();
-                Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-                try {
-                    addresses = geocoder.getFromLocationName(loc_name, 5);
-                } catch (IOException | ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
+                    return false;
                 }
 
-                Address address = addresses.get(0);
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(latLng).title(loc_name));
+                @Override
+                public boolean onQueryTextChange(String newText) {
 
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-                Toast.makeText(getContext(), address.getLatitude() + " " + address.getLongitude(), Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            });
+        }
 
-                return false;
-            }
+        catch (Exception e){
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return false;
-            }
-        });
+        }
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
@@ -247,10 +247,7 @@ public class MapsFragment0 extends Fragment {
 
     }
 
-   public void start_Autocomplete()
-   {
 
-   }
 
 
 
