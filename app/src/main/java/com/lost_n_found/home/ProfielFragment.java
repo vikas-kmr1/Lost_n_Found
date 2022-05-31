@@ -2,8 +2,6 @@ package com.lost_n_found.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +11,16 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.lost_n_found.R;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +46,7 @@ public class ProfielFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Bitmap bitmap;
+
 
     public ProfielFragment() {
         // Required empty public constructor
@@ -120,6 +114,7 @@ public class ProfielFragment extends Fragment {
         progressDialog.setCancelable(false);
 
         // Attach a listener to read the data at our posts reference
+        //
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,7 +123,6 @@ public class ProfielFragment extends Fragment {
                 emailTop.setText(dataSnapshot.child("email").getValue(String.class));
                 emailBottom.setText(dataSnapshot.child("email").getValue(String.class));
                 String avatarUrl = dataSnapshot.child("avatar").getValue(String.class).toString();
-                avatarUrl = avatarUrl.substring(35);
                 setProfileDp(avatarUrl);
 
                 String fullname = dataSnapshot.child("username").getValue(String.class);
@@ -183,21 +177,16 @@ public class ProfielFragment extends Fragment {
     }
 
     private void setProfileDp(String avatarUrl) {
-        StorageReference httpsReference = firebaseStorage.getReference(avatarUrl+"");
-        try {
-            File localfile = File.createTempFile("avatar", "jpg");
-            httpsReference.getFile(localfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                    }
-                     bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                    avatar.setImageBitmap(bitmap);
 
-                }
-            });
-        } catch (IOException e) {
+        try {
+
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();}
+
+                    Glide.with(getContext()).load(avatarUrl).into(avatar);
+
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
 

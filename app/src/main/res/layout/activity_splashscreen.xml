@@ -83,7 +83,7 @@
         android:elevation="2dp"
         app:shapeAppearance="@style/Circular"
         android:padding="8dp"
-        android:background="@color/teal_200"
+        android:background="@color/white"
         android:id="@+id/iconView"
         android:layout_width="150dp"
 

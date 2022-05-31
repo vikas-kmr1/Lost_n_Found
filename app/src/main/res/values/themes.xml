@@ -25,6 +25,9 @@
     <style name="Circular">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="Rectangulat">
+        <item name="cornerSize">10%</item>
+    </style>
 
     <style name="Theme.Lost_n_Found.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

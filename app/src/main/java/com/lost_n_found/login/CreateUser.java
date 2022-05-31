@@ -28,6 +28,31 @@ import javax.annotation.Nullable;
             this.enrollment_no = "N/A";
         }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEnrollment_no(String enrollment_no) {
+        this.enrollment_no = enrollment_no;
+    }
+
+    public void setAvatar(@Nullable String avatar) {
+        this.avatar = avatar;
+    }
+
+
 
     public String getUid() {
         return uid;
@@ -49,6 +74,7 @@ import javax.annotation.Nullable;
         return enrollment_no;
     }
 
+
     @Nullable
     public String getAvatar() {
         return avatar;
@@ -56,4 +82,6 @@ import javax.annotation.Nullable;
 
 
     }
+
+
 

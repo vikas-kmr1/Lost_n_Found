@@ -6,8 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -33,7 +31,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
@@ -45,14 +43,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.lost_n_found.R;
+import com.lost_n_found.home.placeholder.PlaceholderContent;
+import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
+import com.lost_n_found.home.placeholder.PlaceholderLostContent;
 import com.lost_n_found.login.LoginActivity;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,8 +79,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
     ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     public String f_name, l_name, enrollment, mobile;
-    StorageReference storageRef;
-    private Bitmap bitmap;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -137,27 +132,28 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
+                try {
+                    String avatarUrl = dataSnapshot.child("avatar").getValue(String.class).toString();
+                    String fullname = dataSnapshot.child("username").getValue(String.class);
+                    drawer_username.setText("Hello, " + fullname);
+                    setDP(avatarUrl);
 
-                String avatarUrl = dataSnapshot.child("avatar").getValue(String.class).toString();
-                setDP(avatarUrl.substring(35));
+                    String[] F_Lname = fullname.split(" ");
+                    f_name = F_Lname[0];
+                    l_name = F_Lname[1];
+                    enrollment = dataSnapshot.child("enrollment_no").getValue(String.class);
 
-
-                String fullname = dataSnapshot.child("username").getValue(String.class);
-                drawer_username.setText("Hello, "+fullname);
-
-                String[] F_Lname = fullname.split(" ");
-                f_name = F_Lname[0];
-                l_name = F_Lname[1];
-                enrollment = dataSnapshot.child("enrollment_no").getValue(String.class);
-
-                mobile = dataSnapshot.child("phone").getValue(String.class);
+                    mobile = dataSnapshot.child("phone").getValue(String.class);
 
 
-                //Toast.makeText(getContext(), dataSnapshot.child("username").getValue(String.class), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), dataSnapshot.child("username").getValue(String.class), Toast.LENGTH_SHORT).show();
 
+                }
+                catch (Exception e){
+                    Log.v( "homeFragment Error ->",e+"");
+                }
 
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -271,18 +267,12 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
     }
 
     private void setDP(String avatarUrl) {
-        StorageReference httpsReference = firebaseStorage.getReference(avatarUrl+"");
-        try {
-            File localfile = File.createTempFile("avatar","gif");
-            httpsReference.getFile(localfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                    bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                    userdp.setImageBitmap(bitmap);
-                }
-            });
-        } catch (IOException e) {
+        try {
+
+                    Glide.with(getContext()).load(avatarUrl).into(userdp);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -332,6 +322,15 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
             case R.id.LogOut_menu:
                 mAuth.signOut();
+                PlaceholderContent.ITEMS.clear();
+                PlaceholderContent.ITEM_MAP.clear();
+
+                PlaceholderFoundContent.ITEMS.clear();
+                PlaceholderFoundContent.ITEM_MAP.clear();
+
+                PlaceholderLostContent.ITEMS.clear();
+                PlaceholderLostContent.ITEM_MAP.clear();
+
                 Intent intent1 = new Intent(getContext(), LoginActivity.class);
                 requireActivity().finish();
                 startActivity(intent1);

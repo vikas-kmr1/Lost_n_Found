@@ -55,6 +55,9 @@ public class PostItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_post_item_list, container, false);
 
+
+
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -64,7 +67,8 @@ public class PostItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyPostItemRecyclerViewAdapter(PlaceholderContent.ITEMS));
+             recyclerView.setAdapter(new MyPostItemRecyclerViewAdapter(PlaceholderContent.ITEMS,getContext()));
+
         }
         return view;
     }

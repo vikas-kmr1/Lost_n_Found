@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lost_n_found.R;
-import com.lost_n_found.home.placeholder.PlaceholderContent;
+
+import com.lost_n_found.home.placeholder.PlaceholderLostContent;
 
 /**
  * A fragment representing a list of Items.
@@ -64,7 +65,7 @@ public class LostFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyLostItemRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            recyclerView.setAdapter(new MyLostItemRecyclerViewAdapter(PlaceholderLostContent.ITEMS,getContext()));
         }
         return view;
     }

@@ -283,6 +283,7 @@
                         android:hint="Enrollment No."
                         android:inputType="text"
                         android:maxLength="12"
+                        android:textAllCaps="true"
                         android:padding="12dp"
                         android:textAlignment="textStart"
                         android:textColor="#F8FFFFFF"
@@ -324,6 +325,7 @@
 
 
     <Button
+        android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -335,6 +337,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailsEdit" />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ticklayoutEdit"
+        android:layout_margin="10dp"
+        app:layout_constraintVertical_bias="0"
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="#566362"
+        android:elevation="22dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/tick_animationEdit"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:elevation="2sp"
+                android:foregroundGravity="center"
+                android:padding="4dp"
+                app:lottie_autoPlay="true"
+                app:lottie_imageAssetsFolder="images"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/success" />
+
+            <TextView
+                android:id="@+id/verifytextEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignRight="@id/tick_animationEdit"
+                android:elevation="2dp"
+                android:layout_marginLeft="15dp"
+                android:layout_alignParentEnd="true"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="Profile updated successfully "
+                android:textColor="#38c172"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

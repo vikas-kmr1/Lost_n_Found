@@ -71,7 +71,7 @@ public class Splashscreen extends AppCompatActivity {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null){
+        if (user != null && user.isEmailVerified()){
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
@@ -84,7 +84,7 @@ public class Splashscreen extends AppCompatActivity {
                 }
             }, 1000);
         }
-        else if(user == null) {
+        else  {
             pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
             viewPager = findViewById(R.id.liquid_swipe);
             viewPager.setAdapter(pagerAdapter);

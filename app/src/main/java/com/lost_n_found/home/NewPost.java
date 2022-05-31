@@ -3,8 +3,6 @@ package com.lost_n_found.home;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,17 +24,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lost_n_found.R;
 
-import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -205,7 +206,7 @@ public class NewPost extends AppCompatActivity {
 
                 else if(radioGroup.getCheckedRadioButtonId() != -1 && !description.isEmpty() && !location.isEmpty() && !title.isEmpty()){
 
-                    progressDialog.setMessage("uploading");
+                    progressDialog.setMessage("uploading...");
                     progressDialog.show();
 
                     if (lostRBtn.isChecked()){
@@ -214,6 +215,7 @@ public class NewPost extends AppCompatActivity {
                     if (foundRBtn.isChecked()){
                         status="found";
                     }
+
 
 
                     if (targetUri != null)
@@ -231,7 +233,7 @@ public class NewPost extends AppCompatActivity {
                                    storageReference.child(imgStr).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                        @Override
                                        public void onSuccess(Uri uri) {
-                                           String m = uri.getLastPathSegment().toString();
+                                           String m = uri.toString();
                                            createPost(title,description,location,contact,dateString,status,m);
                                        }
                                    }).addOnFailureListener(new OnFailureListener() {
@@ -250,7 +252,7 @@ public class NewPost extends AppCompatActivity {
                    }
                     else {
 
-                            createPost(title,description,location,contact,dateString,status,"N/A");
+                            createPost(title,description,location,contact,dateString,status,"https://firebasestorage.googleapis.com/v0/b/lost-n-found-98b94.appspot.com/o/posts%2Fnodataavailable"+new Random().nextInt(6)+".gif?alt=media&token=f167c72f-421c-4db4-932f-d0d18d87cea2");
 
                     }
 
@@ -268,19 +270,43 @@ public class NewPost extends AppCompatActivity {
     private void createPost(String title, String description, String location, String contact, String dateStr , String statusStr,String imgUrl) {
        String uid = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact,imgUrl)).addOnSuccessListener(new OnSuccessListener<Void>() {
+        DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user/"+uid);
+        databaseReferenceUser.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(Void unused) {
-             progressDialog.dismiss();
-             constraintLayout.setVisibility(View.VISIBLE);
-             constraintLayout.bringToFront();
-             lottieAnimationView.playAnimation();
-             postBtn.setVisibility(View.GONE);
-             linearLayoutdetails.setVisibility(View.GONE);
-             linearLayoutimage.setVisibility(View.GONE);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact,imgUrl,uid,snapshot.child("username").getValue(String.class)+"")).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
+                        constraintLayout.setVisibility(View.VISIBLE);
+                        constraintLayout.bringToFront();
+                        lottieAnimationView.playAnimation();
+                        postBtn.setVisibility(View.GONE);
+                        linearLayoutdetails.setVisibility(View.GONE);
+                        linearLayoutimage.setVisibility(View.GONE);
+
+//                        final Handler handler = new Handler();
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                // Do something after 5s = 5000ms
+//                                onBackPressed();
+//                            }
+//                        }, 6000);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
 
     }
 
@@ -292,17 +318,17 @@ public class NewPost extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             targetUri = data.getData();
 
-            Bitmap bitmap;
             try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-                postImg.setImageBitmap(bitmap);
+//                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+//                postImg.setImageBitmap(bitmap);
+                Glide.with(getApplicationContext()).load(targetUri).into(postImg);
                 postImg.setVisibility(View.VISIBLE);
                 deleteIcon.setVisibility(View.VISIBLE);
                 camIcon.setVisibility(View.GONE);
                 imgTxt.setVisibility(View.GONE);
             }
 
-            catch (FileNotFoundException e) {
+            catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }

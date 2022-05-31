@@ -13,6 +13,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:id="@+id/linearLayoutRecycler"
         android:layout_margin="2dp"
         android:background="@drawable/textbox"
         android:clickable="true"
@@ -26,25 +27,25 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageLost"
                 android:layout_width="105dp"
                 android:layout_height="105dp"
                 android:layout_gravity="top|center"
                 android:layout_margin="2dp"
                 android:src="@drawable/augn_logo"
-                app:layout_constraintBottom_toTopOf="@id/content"
+                app:layout_constraintBottom_toTopOf="@id/contentTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/Rectangulat"  />
 
             <TextView
-                android:id="@+id/content"
+                android:id="@+id/contentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="4dp"
+                android:layout_marginBottom="4dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textAppearance="?attr/textAppearanceListItem"
@@ -65,7 +66,7 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toStartOf="@id/LostByText"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content" />
+                app:layout_constraintTop_toBottomOf="@id/contentTitle" />
 
             <TextView
                 android:id="@+id/LostByText"
@@ -80,7 +81,7 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/LostByTitle"
-                app:layout_constraintTop_toBottomOf="@id/content" />
+                app:layout_constraintTop_toBottomOf="@id/contentTitle" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

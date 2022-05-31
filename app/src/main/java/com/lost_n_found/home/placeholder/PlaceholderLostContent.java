@@ -11,19 +11,17 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class PlaceholderContent {
+public class PlaceholderLostContent {
 
     /**
      * An array of sample (placeholder) items.
      */
-    public static  List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
+    public static List<PlaceholderItem> ITEMS = new ArrayList<PlaceholderItem>();
 
     /**
      * A map of sample (placeholder) items, by ID.
      */
     public static  Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
-
-
 
 
     private static void addItem(PlaceholderItem item) {
@@ -44,23 +42,22 @@ public class PlaceholderContent {
         public final String description;
         public final String date;
         public final String location;
-        public final String username;
+        public final String lostBy;
         public final String imageUrl;
         public final String contact;
 
 
-        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String username,String imageUrl,String contact) {
+
+        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String lostBy ,String imageUrl,String contact) {
             this.uid = uid;
             this.title = title;
             this.status = status;
             this.description = description;
             this.date = date;
             this.location = location;
-            this.username = username;
+            this.lostBy = lostBy;
             this.imageUrl = imageUrl;
-            this.contact= contact;
+            this.contact = contact;
         }
-
-
     }
 }

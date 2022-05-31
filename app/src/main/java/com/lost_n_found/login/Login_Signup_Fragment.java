@@ -1,9 +1,10 @@
 package com.lost_n_found.login;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,8 +32,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.lost_n_found.R;
-import com.lost_n_found.home.home;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,6 +53,10 @@ public class Login_Signup_Fragment extends Fragment {
     private EditText password;
     private EditText confirm_password;
     private Button signup;
+    LottieAnimationView lottieAnimationView ;
+    TextView verifyTExt;
+    CardView cardView ;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -113,6 +122,10 @@ public class Login_Signup_Fragment extends Fragment {
         signup = root.findViewById(R.id.sign_btn);
         RadioGroup genderGroup = root.findViewById(R.id.genderRadios);
 
+        lottieAnimationView = root.findViewById(R.id.tick_animation);
+        verifyTExt = root.findViewById(R.id.verifytext);
+        cardView = root.findViewById(R.id.ticklayout);
+
 
         //login authentication
 
@@ -163,7 +176,7 @@ public class Login_Signup_Fragment extends Fragment {
 //                    }
 
                     else if (pass_user.length() < 8 || pass_user.length() > 20) {
-                        Toast.makeText(getContext(), "Password sholud me of length (8 - 20)!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Password should be of length (8 - 20)!", Toast.LENGTH_SHORT).show();
                     }
 
                     else {
@@ -218,12 +231,28 @@ public class Login_Signup_Fragment extends Fragment {
                         try {
 
                             FirebaseUser user = mAuth.getCurrentUser();
-
+                            ProgressDialog progressDialog = new ProgressDialog(requireActivity());
+                            progressDialog.setCancelable(false);
+                            progressDialog.setMessage("creating new account...");
+                            progressDialog.show();
                             //sending verification email:
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(getContext(), "Check your inbox", Toast.LENGTH_LONG).show();
+                                    if(progressDialog.isShowing()){
+                                        progressDialog.dismiss();
+                                    }
+                                    signup.setVisibility(View.GONE);
+                                    cardView.setVisibility(View.VISIBLE);
+                                    lottieAnimationView.playAnimation();
+
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(requireContext(), "Check your inbox", Toast.LENGTH_LONG).show();
+                                        }
+                                    }, 5000);
 
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -247,15 +276,14 @@ public class Login_Signup_Fragment extends Fragment {
 
 
                                 addUserToDatabase(user_name, email, mAuth.getCurrentUser().getUid());
-                                Intent intent = new Intent(getActivity(), home.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                requireActivity().finish();
+//                                Intent intent = new Intent(getActivity(), home.class);
+//                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                requireActivity().finish();
                                 //TODO Progressbar
 
 
-                                startActivity(intent);
-                                requireActivity().finish();
-                                Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
+//                                startActivity(intent);
+//                                requireActivity().finish();
                                 //updateUI(user);
 
                             } else {
@@ -275,12 +303,19 @@ public class Login_Signup_Fragment extends Fragment {
 
     }
 
-    @SuppressLint("RestrictedApi")
+
     private void addUserToDatabase(String username, String useremail, String uid) {
         mDbRef = FirebaseDatabase.getInstance().getReference();
-        String avatar = "gs://lost-n-found-98b94.appspot.com/avataar/" + gender + ".jpg";
-        mDbRef.child("user").child(uid).setValue(new CreateUser(uid.trim(), username.trim(), useremail.trim(), avatar));
+        FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReference().child("avataar");
+        storageReference.child(gender+".gif").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+            // Toast.makeText(getContext(),uri+"",Toast.LENGTH_LONG).show();
+                mDbRef.child("user").child(uid).setValue(new CreateUser(uid.trim(), username.trim(), useremail.trim(), uri+""));
 
+            }
+        });
 
     }
 }

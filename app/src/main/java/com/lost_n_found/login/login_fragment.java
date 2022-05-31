@@ -159,7 +159,7 @@ public class login_fragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email_user = email.getText().toString();
+                String email_user = email.getText().toString().trim();
                 String pass_user = password.getText().toString();
 
 

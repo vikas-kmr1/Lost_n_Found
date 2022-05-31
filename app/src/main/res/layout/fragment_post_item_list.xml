@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:elevation="4dp"
+    android:elevation="204dp"
     android:padding="5dp"
     android:name="com.lost_n_found.home.PostRecycler"
     android:layout_width="match_parent"
