@@ -12,7 +12,6 @@ import java.util.Map;
  * TODO: Replace all uses of this class before publishing your app.
  */
 public class PlaceholderLostContent {
-
     /**
      * An array of sample (placeholder) items.
      */
@@ -24,7 +23,7 @@ public class PlaceholderLostContent {
     public static  Map<String, PlaceholderItem> ITEM_MAP = new HashMap<String, PlaceholderItem>();
 
 
-    private static void addItem(PlaceholderItem item) {
+    public static void addItem(PlaceholderItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.uid, item);
     }
@@ -48,6 +47,9 @@ public class PlaceholderLostContent {
 
 
 
+
+
+
         public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String lostBy ,String imageUrl,String contact) {
             this.uid = uid;
             this.title = title;
@@ -60,4 +62,6 @@ public class PlaceholderLostContent {
             this.contact = contact;
         }
     }
+
+
 }

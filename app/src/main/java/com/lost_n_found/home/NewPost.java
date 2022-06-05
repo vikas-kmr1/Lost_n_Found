@@ -288,6 +288,8 @@ public class NewPost extends AppCompatActivity {
                         linearLayoutdetails.setVisibility(View.GONE);
                         linearLayoutimage.setVisibility(View.GONE);
 
+
+
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override

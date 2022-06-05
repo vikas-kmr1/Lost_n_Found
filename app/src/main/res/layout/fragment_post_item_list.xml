@@ -13,4 +13,5 @@
     android:scrollbarStyle="outsideOverlay"
     app:layoutManager="LinearLayoutManager"
     tools:context=".home.PostItemFragment"
-    tools:listitem="@layout/fragment_post_item" />
+    tools:listitem="@layout/fragment_post_item"
+    />

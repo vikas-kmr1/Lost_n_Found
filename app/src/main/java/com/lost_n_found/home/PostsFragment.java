@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.lost_n_found.R;
+import com.lost_n_found.home.placeholder.PlaceholderContent;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +71,14 @@ public class PostsFragment extends Fragment {
         ViewPager viewPager = root.findViewById(R.id.viewpagerPost);
         TabLayout tabLayout = root.findViewById(R.id.tab_layoutPost);
         tabLayout.addTab(tabLayout.newTab().setText("Lost"));
+        TextView noposts= (TextView) root.findViewById(R.id.noPosts);
+        ImageView nopostsImg = (ImageView) root.findViewById(R.id.emptyBox);
+
+        if(PlaceholderContent.ITEMS.size() == 0){
+            noposts.setVisibility(View.VISIBLE);
+            nopostsImg.setVisibility(View.VISIBLE);
+        }
+
 
         final MyPostAdapter adapter= new MyPostAdapter(getChildFragmentManager(),getContext(),tabLayout.getTabCount());
         viewPager.setAdapter(adapter);

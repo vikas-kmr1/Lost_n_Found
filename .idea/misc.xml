@@ -16,6 +16,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/fabstyle.xml" value="0.1361111111111111" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/home_filled.xml" value="0.176" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/hometabcurve.xml" value="0.1505" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/ic_empty_box.xml" value="0.1575" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/ic_sharp_signal_wifi_connected_no_internet_4_24.xml" value="0.1205" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/ic_twotone_edit_24.xml" value="0.1435" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/drawable/ic_twotone_email_24.xml" value="0.1435" />
@@ -64,7 +65,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_onboard3.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_post_item.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_post_item_list.xml" value="0.20879629629629629" />
-        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_posts.xml" value="0.176" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_posts.xml" value="0.264" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_profiel.xml" value="0.2" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_slideshow.xml" value="0.15723684210526315" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/login_curve.xml" value="0.1" />

@@ -21,8 +21,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.lost_n_found.R;
 import com.lost_n_found.databinding.ActivityHomeBinding;
+import com.lost_n_found.home.placeholder.PlaceholderContent;
+import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
+import com.lost_n_found.home.placeholder.PlaceholderLostContent;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 
@@ -39,10 +51,106 @@ public class home extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+        FragmentTransaction Profile= getSupportFragmentManager().beginTransaction();
+        Profile.replace(R.id.fragment_container_view_tag,new ProfielFragment());
+        Profile.commit();
+        binding.bottomBar.setItemActiveIndex(3);
 
-        FragmentTransaction Home= getSupportFragmentManager().beginTransaction();
-        Home.replace(R.id.fragment_container_view_tag,new HomeFragment());
-        Home.commit();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String uid = firebaseUser.getUid();
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user");
+        DatabaseReference databaseReferencePosts = firebaseDatabase.getReference("posts/"+uid);
+        DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PlaceholderFoundContent.ITEMS.clear();
+                PlaceholderLostContent.ITEMS.clear();
+                for( DataSnapshot snapshot1: snapshot.getChildren()){
+                    //Log.v("-11>",snapshot1.getChildrenCount()+"");
+                    for(DataSnapshot snapshot2: snapshot1.getChildren()){
+                        CreatePost post = snapshot2.getValue(CreatePost.class);
+                        String title = post.getTitle().toString();
+                        String date = post.getDate().toString();
+                        String descp = post.getDescription();
+                        String status = post.getStatus().toString();
+                        String location = post.getLocation().toString();
+                        String userid = post.getUid().toString();
+                        String username = post.getUsername().toString();
+                        String imageUrl = post.getPostImgUrl().toString();
+                        String contact = post.getContact().toString();
+                        if (status.equals("lost")) {
+                            PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
+                            PlaceholderLostContent.ITEMS.add(obj);
+                        } else {
+                            PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
+                            PlaceholderFoundContent.ITEMS.add(obj);
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+        databaseReferencePosts.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                CreatePost post = snapshot.getValue(CreatePost.class);
+                String title = post.getTitle().toString();
+                String date = post.getDate().toString();
+                String descp = post.getDescription();
+                String status = post.getStatus().toString();
+                String location = post.getLocation().toString();
+                String userid = post.getUid().toString();
+                String contact = post.getContact().toString();
+                String username = post.getUsername().toString();
+                String imageUrl = post.getPostImgUrl().toString();
+                PlaceholderContent.PlaceholderItem obj  =  new PlaceholderContent.PlaceholderItem(uid+"",title+"",status+"",descp+"",date+"",location+"", username+"",imageUrl+"",contact);
+                PlaceholderContent.ITEMS.add(obj);
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         //checking network connection
         boolean connected = false;
