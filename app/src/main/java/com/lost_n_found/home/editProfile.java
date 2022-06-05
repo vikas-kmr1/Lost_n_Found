@@ -241,6 +241,16 @@ public class editProfile extends AppCompatActivity {
                         lottieAnimationView.playAnimation();
                     }, 1500);
 
+                    try {
+                        handler.postDelayed(() -> {
+
+                            finish();
+                        }, 3000);
+                    }catch (Exception e){
+
+                    }
+
+
 
                 }
 
@@ -267,6 +277,15 @@ public class editProfile extends AppCompatActivity {
                                         cardView.setVisibility(View.VISIBLE);
                                         lottieAnimationView.playAnimation();
 
+                                        final Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // Do something after 5s = 5000ms
+                                                finish();
+                                            }
+                                        }, 6000);
+
 
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
@@ -286,14 +305,6 @@ public class editProfile extends AppCompatActivity {
 
                 }
 
-//               try {
-//                   handler.postDelayed(() -> {
-//
-//
-//                   }, 6000);
-//               }catch (Exception e){
-//
-//               }
 
 
 

@@ -113,7 +113,7 @@
     <ScrollView
         android:id="@+id/detailsEdit"
         android:layout_width="match_parent"
-        android:scrollbarSize="9dp"
+        android:scrollbarSize="5dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/postcardview"
         android:elevation="40dp"
@@ -265,7 +265,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:background= "@color/ic_launcher_new_background"
                         />
                     <TextView
@@ -284,6 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
                         android:background= "@color/ic_launcher_new_background"
                         />
                     <LinearLayout

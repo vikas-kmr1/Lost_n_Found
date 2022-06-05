@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -287,14 +288,14 @@ public class NewPost extends AppCompatActivity {
                         linearLayoutdetails.setVisibility(View.GONE);
                         linearLayoutimage.setVisibility(View.GONE);
 
-//                        final Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                // Do something after 5s = 5000ms
-//                                onBackPressed();
-//                            }
-//                        }, 6000);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Do something after 5s = 5000ms
+                                finish();
+                            }
+                        }, 3500);
 
                     }
                 });
