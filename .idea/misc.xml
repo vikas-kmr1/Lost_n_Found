@@ -37,6 +37,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_main.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_maps.xml" value="0.2" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_messages.xml" value="0.1936725096194955" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_navigation_ham_b.xml" value="0.14736842105263157" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_new_post.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_post_details.xml" value="0.2" />
@@ -48,6 +49,8 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/drawer_headert.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/drawer_layout.xml" value="0.264" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/drawerlayout.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_chat.xml" value="0.1936725096194955" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_chat_list.xml" value="0.1936725096194955" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_found.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_found_list.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/fragment_gallery.xml" value="0.11875" />

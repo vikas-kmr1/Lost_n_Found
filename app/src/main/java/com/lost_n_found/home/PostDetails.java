@@ -14,10 +14,11 @@ import com.google.android.material.chip.Chip;
 import com.lost_n_found.R;
 
 public class PostDetails extends AppCompatActivity {
-     ImageView postImgView;
-     TextView dateT,desT,contactT,locationT,titleT;
-     Chip chip ;
-     ImageButton bckBtn;
+    ImageView postImgView;
+    TextView dateT, desT, contactT, locationT, titleT;
+    Chip chip;
+    ImageButton bckBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class PostDetails extends AppCompatActivity {
         desT.setText(des);
         locationT.setText(location);
         chip.setText(name);
-        Glide.with(getApplicationContext()).load(imgUrl).into(postImgView   );
+        Glide.with(getApplicationContext()).load(imgUrl).into(postImgView);
 
 
         bckBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +57,6 @@ public class PostDetails extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
 
 
     }

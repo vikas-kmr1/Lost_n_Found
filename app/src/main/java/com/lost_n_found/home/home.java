@@ -87,10 +87,10 @@ public class home extends AppCompatActivity {
                         String contact = post.getContact().toString();
                         if (status.equals("lost")) {
                             PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
-                            PlaceholderLostContent.ITEMS.add(obj);
+                            PlaceholderLostContent.ITEMS.add(0,obj);
                         } else {
                             PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
-                            PlaceholderFoundContent.ITEMS.add(obj);
+                            PlaceholderFoundContent.ITEMS.add(0,obj);
                         }
                     }
                 }

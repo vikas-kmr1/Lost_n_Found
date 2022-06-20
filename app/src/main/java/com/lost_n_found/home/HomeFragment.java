@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.lost_n_found.R;
+import com.lost_n_found.home.chatMessages.MessagesActivity;
 import com.lost_n_found.home.placeholder.PlaceholderContent;
 import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
 import com.lost_n_found.home.placeholder.PlaceholderLostContent;
@@ -177,6 +179,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         tabLayout.addTab(tabLayout.newTab().setText("Lost"));
         tabLayout.addTab(tabLayout.newTab().setText("Found"));
         viewPager = root.findViewById(R.id.viewpagerHome);
+        ImageButton chatBtn = root.findViewById(R.id.chatButton);
         NavigationView navigationView = root.findViewById(R.id.nav_view);
 
         View headerLayout = navigationView.inflateHeaderView(R.layout.drawer_headert);
@@ -214,6 +217,15 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MessagesActivity.class);
+                startActivity(intent);
             }
         });
 

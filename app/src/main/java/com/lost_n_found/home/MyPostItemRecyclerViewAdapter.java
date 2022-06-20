@@ -61,7 +61,7 @@ public class MyPostItemRecyclerViewAdapter extends RecyclerView.Adapter<MyPostIt
                 intent.putExtra("contact",mValues.get(position).contact);
                 intent.putExtra("name",mValues.get(position).username);
                 intent.putExtra("imgUrl",mValues.get(position).imageUrl);
-              context.startActivity(intent);
+                context.startActivity(intent);
 
             }
         });
@@ -89,6 +89,7 @@ public class MyPostItemRecyclerViewAdapter extends RecyclerView.Adapter<MyPostIt
             mContentImageView = binding.image;
             mdateView = binding.dateText;
             mImageView = binding.image;
+
         }
 
         @Override

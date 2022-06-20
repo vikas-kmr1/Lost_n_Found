@@ -38,9 +38,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lost_n_Found">
         <activity
+            android:name=".home.chatMessages.MessagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.PostDetails"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.AboutActivity"
             android:exported="false" />
