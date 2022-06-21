@@ -65,6 +65,7 @@ public class FoundFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyFoundItemRecyclerViewAdapter(PlaceholderFoundContent.ITEMS,getContext()));
+
         }
         return view;
     }

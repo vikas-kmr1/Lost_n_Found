@@ -31,6 +31,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/font/antic_slab.xml" value="0.12314814814814815" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout-land/activity_post_details.xml" value="0.1" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_about.xml" value="0.1628901239846088" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_chat.xml" value="0.16" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_edit_profile.xml" value="0.176" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_ham_nav.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_home.xml" value="0.12" />
@@ -80,6 +81,8 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/profile_head.xml" value="0.176" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/profile_info.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/profile_item.xml" value="0.4" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/recievelayout.xml" value="0.1" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/sendlayout.xml" value="0.1" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/menu/activity_main_drawer.xml" value="0.1299342105263158" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/menu/drawer_menu.xml" value="0.2" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/menu/ham_nav.xml" value="0.2212962962962963" />

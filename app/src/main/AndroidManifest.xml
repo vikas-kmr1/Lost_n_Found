@@ -38,8 +38,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lost_n_Found">
         <activity
+            android:name=".home.chatMessages.chatActivity"
+            android:exported="false"
+             android:screenOrientation="portrait"/>
+        <activity
             android:name=".home.chatMessages.MessagesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".home.PostDetails"
             android:exported="false"
@@ -80,10 +85,10 @@
             android:exported="true"
             android:screenOrientation="portrait">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".login.LoginActivity"

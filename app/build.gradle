@@ -3,7 +3,11 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
+
 }
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 31
@@ -36,6 +40,8 @@ buildFeatures{
     buildFeatures {
         viewBinding true
     }
+
+
 }
 
 dependencies {
@@ -68,7 +74,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.cuberto:liquid-swipe:1.0.0'
     implementation 'androidx.core:core-ktx:1.6.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.0"
     // FirebaseUI Storage only
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
 

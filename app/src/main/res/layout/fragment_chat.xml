@@ -24,11 +24,15 @@
     app:cardCornerRadius="15dp">
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        android:id="@+id/avatarImg"
         android:layout_width="80dp"
         android:layout_gravity="center_vertical"
         android:layout_height="80dp"
         android:background="@color/quantum_cyan200"
         app:shapeAppearance="@style/Circular"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,20 +40,15 @@
         android:gravity="center"
         android:paddingEnd="5dp"
         android:layout_gravity="center">
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:maxLines="1"
-        android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:layout_gravity="center"
         android:textAppearance="?attr/textAppearanceListItem" />
+
     </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

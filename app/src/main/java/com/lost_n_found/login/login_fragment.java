@@ -46,9 +46,9 @@ public class login_fragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private  String regex = "^(.+)@(.+)$";
+    private String regex = "^(.+)@(.+)$";
 
-     private EditText email;
+    private EditText email;
     private EditText password;
     private TextView forget;
     private Button login;
@@ -96,20 +96,16 @@ public class login_fragment extends Fragment {
         // Initialize Firebase Auth
 
 
-
-
-
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        ViewGroup root=(ViewGroup) inflater.inflate(R.layout.fragment_login_fragment,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_login_fragment, container, false);
 
-        EditText email=root.findViewById(R.id.email);
-        EditText password=root.findViewById(R.id.pass);
-        TextView forget=root.findViewById(R.id.forget_pass);
-        Button login =root.findViewById(R.id.lg_btn);
+        EditText email = root.findViewById(R.id.email);
+        EditText password = root.findViewById(R.id.pass);
+        TextView forget = root.findViewById(R.id.forget_pass);
+        Button login = root.findViewById(R.id.lg_btn);
 
         email.setTranslationX(300);
         password.setTranslationX(300);
@@ -127,7 +123,6 @@ public class login_fragment extends Fragment {
         login.animate().translationX(0).alpha(1).setDuration(600).setStartDelay(800).start();
 
 
-
         //login authentication
         mAuth = FirebaseAuth.getInstance();
 
@@ -135,11 +130,9 @@ public class login_fragment extends Fragment {
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(email.getText()))
-                {
+                if (TextUtils.isEmpty(email.getText())) {
                     email.setError("Enter Your registered email ");
-                }
-                else {
+                } else {
                     mAuth.sendPasswordResetEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -177,7 +170,7 @@ public class login_fragment extends Fragment {
                         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                         connected = networkInfo != null && networkInfo.isAvailable() &&
                                 networkInfo.isConnected();
-                        if (!connected){
+                        if (!connected) {
                             AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setIcon(R.drawable.no_net).setTitle("NO INTERNET").setMessage("turn on mobile data or wifi")
                                     .setPositiveButton("turn on", new DialogInterface.OnClickListener() {
                                         @Override
@@ -205,40 +198,27 @@ public class login_fragment extends Fragment {
                     Pattern pattern = Pattern.compile(regex);
                     Matcher matcher = pattern.matcher(email_user);
 
-                    if (email_user.isEmpty()){
+                    if (email_user.isEmpty()) {
                         email.setError("This field can't be empty!");
                     }
-                    if (!connected){
+                    if (!connected) {
                         Toast.makeText(getContext(), "Turn on mobile data", Toast.LENGTH_SHORT).show();
-                    }
-
-                    else if(pass_user.isEmpty()){
+                    } else if (pass_user.isEmpty()) {
                         password.setError("This field can't be empty!");
+                    } else if ((!matcher.matches() || !email_user.endsWith(".com")) && !email_user.isEmpty()) {
+                        Toast.makeText(getContext(), "Enter valid Email!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        loginFun(email_user, pass_user);
                     }
 
-
-
-                    else if((!matcher.matches() || !email_user.endsWith(".com")) && !email_user.isEmpty()){
-                        Toast.makeText(getContext() ,"Enter valid Email!", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                    else{
-                     loginFun(email_user, pass_user);}
-
-                }
-
-                catch (Exception e){
-                    Toast.makeText(getContext(),"Something went wrong!"+e,Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Something went wrong!" + e, Toast.LENGTH_SHORT).show();
 
                 }
 
 
             }
         });
-
-
-
 
 
         //TODO call after succesful login
@@ -256,13 +236,10 @@ public class login_fragment extends Fragment {
         return root;
 
 
-
     }
 
 
-
     private void loginFun(String email_user, String pass_user) {
-
 
 
         mAuth.signInWithEmailAndPassword(email_user, pass_user)
@@ -275,20 +252,20 @@ public class login_fragment extends Fragment {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("LoginSuccessed", "signInWithEmail:success");
-                            if (!user.isEmailVerified()){
-                                Toast.makeText(getContext(), "verify your email", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Intent intent = new Intent(getActivity(), home.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                requireActivity().finish();
-                                // getActivity(Splashscreen)
+                                assert user != null;
+                                if (!user.isEmailVerified()) {
+                                    Toast.makeText(getContext(), "verify your email", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Intent intent = new Intent(getActivity(), home.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    requireActivity().finish();
+                                    // getActivity(Splashscreen)
 
 
-                                startActivity(intent);
-                                Toast.makeText(getContext(), "Welcome Back!",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                                    startActivity(intent);
+                                    Toast.makeText(getContext(), "Welcome Back!",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -297,8 +274,7 @@ public class login_fragment extends Fragment {
                                         Toast.LENGTH_SHORT).show();
                                 //  updateUI(null);
                             }
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
                             Toast.makeText(getContext(), "Authentication failed!",
                                     Toast.LENGTH_SHORT).show();
                         }

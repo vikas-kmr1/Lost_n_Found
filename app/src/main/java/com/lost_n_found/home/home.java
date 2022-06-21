@@ -32,9 +32,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lost_n_found.R;
 import com.lost_n_found.databinding.ActivityHomeBinding;
+import com.lost_n_found.home.chatMessages.placeholder.PlaceholderChatContent;
 import com.lost_n_found.home.placeholder.PlaceholderContent;
 import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
 import com.lost_n_found.home.placeholder.PlaceholderLostContent;
+import com.lost_n_found.login.CreateUser;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 
@@ -56,101 +58,128 @@ public class home extends AppCompatActivity {
         Profile.commit();
         binding.bottomBar.setItemActiveIndex(3);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        String uid = firebaseUser.getUid();
 
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+      try {
+          FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+          FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+          String uid = firebaseUser.getUid();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user");
-        DatabaseReference databaseReferencePosts = firebaseDatabase.getReference("posts/"+uid);
-        DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
+          FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                PlaceholderFoundContent.ITEMS.clear();
-                PlaceholderLostContent.ITEMS.clear();
-                for( DataSnapshot snapshot1: snapshot.getChildren()){
-                    //Log.v("-11>",snapshot1.getChildrenCount()+"");
-                    for(DataSnapshot snapshot2: snapshot1.getChildren()){
-                        CreatePost post = snapshot2.getValue(CreatePost.class);
-                        String title = post.getTitle().toString();
-                        String date = post.getDate().toString();
-                        String descp = post.getDescription();
-                        String status = post.getStatus().toString();
-                        String location = post.getLocation().toString();
-                        String userid = post.getUid().toString();
-                        String username = post.getUsername().toString();
-                        String imageUrl = post.getPostImgUrl().toString();
-                        String contact = post.getContact().toString();
-                        if (status.equals("lost")) {
-                            PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
-                            PlaceholderLostContent.ITEMS.add(0,obj);
-                        } else {
-                            PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "",contact);
-                            PlaceholderFoundContent.ITEMS.add(0,obj);
-                        }
-                    }
-                }
+          FirebaseFirestore db = FirebaseFirestore.getInstance();
+          DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user");
+          DatabaseReference databaseReferencePosts = firebaseDatabase.getReference("posts/"+uid);
+          DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
+
+          databaseReferenceUser.addValueEventListener(new ValueEventListener() {
+              @Override
+              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                  PlaceholderChatContent.ITEMS.clear();
+                  for (DataSnapshot snap : snapshot.getChildren()) {
+                      CreateUser User = snap.getValue(CreateUser.class);
+                      assert User != null;
+                      if (!firebaseUser.getUid().equals(User.getUid())) {
+                          PlaceholderChatContent.PlaceholderItem obj = new PlaceholderChatContent.PlaceholderItem(User.getUid(), User.getUsername(), User.getAvatar());
+                          PlaceholderChatContent.ITEMS.add(obj);
+                      }
+
+                  }
+
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError error) {
+
+              }
+          });
 
 
-            }
+          databaseReference.addValueEventListener(new ValueEventListener() {
+              @Override
+              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                  PlaceholderFoundContent.ITEMS.clear();
+                  PlaceholderLostContent.ITEMS.clear();
+                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                      //Log.v("-11>",snapshot1.getChildrenCount()+"");
+                      for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                          CreatePost post = snapshot2.getValue(CreatePost.class);
+                          String title = post.getTitle().toString();
+                          String date = post.getDate().toString();
+                          String descp = post.getDescription();
+                          String status = post.getStatus().toString();
+                          String location = post.getLocation().toString();
+                          String userid = post.getUid().toString();
+                          String username = post.getUsername().toString();
+                          String imageUrl = post.getPostImgUrl().toString();
+                          String contact = post.getContact().toString();
+                          if (status.equals("lost")) {
+                              PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
+                              PlaceholderLostContent.ITEMS.add(0, obj);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                          } else {
+                              PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
+                              PlaceholderFoundContent.ITEMS.add(0, obj);
 
-            }
-        });
-
-
-
-
-
-
-        databaseReferencePosts.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                CreatePost post = snapshot.getValue(CreatePost.class);
-                String title = post.getTitle().toString();
-                String date = post.getDate().toString();
-                String descp = post.getDescription();
-                String status = post.getStatus().toString();
-                String location = post.getLocation().toString();
-                String userid = post.getUid().toString();
-                String contact = post.getContact().toString();
-                String username = post.getUsername().toString();
-                String imageUrl = post.getPostImgUrl().toString();
-                PlaceholderContent.PlaceholderItem obj  =  new PlaceholderContent.PlaceholderItem(uid+"",title+"",status+"",descp+"",date+"",location+"", username+"",imageUrl+"",contact);
-                PlaceholderContent.ITEMS.add(obj);
-
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                          }
+                      }
+                  }
 
 
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError error) {
+
+              }
+          });
+
+
+          databaseReferencePosts.addChildEventListener(new ChildEventListener() {
+              @Override
+              public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                  CreatePost post = snapshot.getValue(CreatePost.class);
+                  String title = post.getTitle().toString();
+                  String date = post.getDate().toString();
+                  String descp = post.getDescription();
+                  String status = post.getStatus().toString();
+                  String location = post.getLocation().toString();
+                  String userid = post.getUid().toString();
+                  String contact = post.getContact().toString();
+                  String username = post.getUsername().toString();
+                  String imageUrl = post.getPostImgUrl().toString();
+                  PlaceholderContent.PlaceholderItem obj = new PlaceholderContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
+                  PlaceholderContent.ITEMS.add(obj);
+
+
+              }
+
+              @Override
+              public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+              }
+
+              @Override
+              public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+              }
+
+              @Override
+              public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError error) {
+
+              }
+          });
+
+      }
+      catch (Exception e){
+          Log.d("home @ Exception", e+"");
+
+      }
 
         //checking network connection
         boolean connected = false;

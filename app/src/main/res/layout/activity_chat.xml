@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background= "@color/quantum_vanillablueA100"
+    tools:context=".home.chatMessages.chatActivity">
+
+
+        <LinearLayout
+            android:id="@+id/chatToolbar"
+            android:layout_width="match_parent"
+            android:background="@drawable/action_curve"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/backButtonChat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="18dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:backgroundTint="@color/quantum_vanillablue800"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:tint="@color/white" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="1dp"
+                android:layout_marginStart="10dp"
+                app:shapeAppearance="@style/Circular"
+                android:background="@color/black"
+                android:id="@+id/toolbatAvatar"
+                android:layout_gravity="start"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbarName"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/white"
+                android:layout_marginStart="15dp"
+                android:textSize="22sp"/>
+
+        </LinearLayout>
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/messageRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/chatToolbar"
+        app:layout_constraintBottom_toTopOf="@id/LinearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+       />
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:weightSum="100">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarFadeDuration="1000"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:maxHeight="110dp"
+            android:layout_weight="95"
+            android:background="@drawable/textbox"
+            >
+            <EditText
+                android:layout_gravity="center"
+                android:id="@+id/messageText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:hint="Message"
+                android:maxHeight="110dp"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+        </ScrollView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="58dp"
+            android:src="@drawable/ic_baseline_send_24"
+            android:layout_height="50dp"
+            android:foregroundGravity="center_horizontal"
+            android:paddingStart="2dp"
+            android:layout_weight="8"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="@color/white"
+            android:id="@+id/sendBtn"
+            android:background = "?android:attr/selectableItemBackgroundBorderless"
+            app:shapeAppearance="@style/Circular"
+            android:layout_gravity="end|bottom"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
