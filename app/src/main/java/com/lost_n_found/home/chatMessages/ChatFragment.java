@@ -73,6 +73,7 @@ public class ChatFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(PlaceholderChatContent.ITEMS, context));
+
         }
         return view;
     }

@@ -64,7 +64,6 @@ public class chatActivity extends AppCompatActivity {
 
         messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         messageRecyclerView.setAdapter(messageAdapter);
-
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String avatar = intent.getStringExtra("avatar");
@@ -155,6 +154,7 @@ public class chatActivity extends AppCompatActivity {
                             messageArrayList.add(new CreateMessage(createMessage.getMessage()+"", createMessage.getSenderId()+""));
                         }
                         messageAdapter.notifyDataSetChanged();
+                        messageRecyclerView.scrollToPosition(messageAdapter.getItemCount()-1);
                     }
 
                     @Override
@@ -162,5 +162,7 @@ public class chatActivity extends AppCompatActivity {
 
                     }
                 });
+
+
     }
 }

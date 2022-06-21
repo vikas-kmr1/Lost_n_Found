@@ -9,18 +9,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_margin="6dp"
-        android:backgroundTint="@color/teal_200"
-        android:background="@drawable/btn_design">
+        android:elevation="10dp"
+        android:backgroundTint="@color/quantum_grey900"
+        android:background="@drawable/edit_text_design">
 
         <TextView
+            android:maxWidth="300dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="25sp"
+            android:textColor="@color/white"
             android:padding="5dp"
-            android:gravity="center"
+            android:layout_margin="2dp"
             android:id="@+id/recieveMessageTx"
             android:text="reciever"
             />
+
 
 
 

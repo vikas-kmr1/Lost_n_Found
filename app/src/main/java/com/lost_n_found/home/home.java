@@ -116,11 +116,14 @@ public class home extends AppCompatActivity {
                               PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
                               PlaceholderLostContent.ITEMS.add(0, obj);
 
+
                           } else {
                               PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
                               PlaceholderFoundContent.ITEMS.add(0, obj);
 
                           }
+
+
                       }
                   }
 
