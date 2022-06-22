@@ -277,7 +277,7 @@ public class NewPost extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact,imgUrl,uid,snapshot.child("username").getValue(String.class)+"")).addOnSuccessListener(new OnSuccessListener<Void>() {
+                databaseReference.child("posts").child(uid).push().setValue(new CreatePost(statusStr,title,description,location,dateStr,contact,imgUrl,uid,snapshot.child("username").getValue(String.class)+"",snapshot.child("avatar").getValue(String.class)+"")).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         progressDialog.dismiss();
@@ -322,8 +322,7 @@ public class NewPost extends AppCompatActivity {
             targetUri = data.getData();
 
             try {
-//                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-//                postImg.setImageBitmap(bitmap);
+
                 Glide.with(getApplicationContext()).load(targetUri).into(postImg);
                 postImg.setVisibility(View.VISIBLE);
                 deleteIcon.setVisibility(View.VISIBLE);

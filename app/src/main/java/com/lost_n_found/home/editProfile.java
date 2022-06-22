@@ -3,7 +3,6 @@ package com.lost_n_found.home;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -331,11 +330,9 @@ public class editProfile extends AppCompatActivity {
             targetUri = data.getData();
 
 
-            Bitmap bitmap;
-            try {
-               // bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
 
-               // pfileImg.setImageBitmap(bitmap);
+            try {
+
                 Glide.with(getApplicationContext()).load(targetUri).into(pfileImg);
                 pfileImg.setVisibility(View.VISIBLE);
                 deleteIcon.setVisibility(View.VISIBLE);

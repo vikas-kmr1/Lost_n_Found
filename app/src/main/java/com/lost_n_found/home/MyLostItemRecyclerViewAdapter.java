@@ -60,6 +60,9 @@ public class MyLostItemRecyclerViewAdapter extends RecyclerView.Adapter<MyLostIt
                 intent.putExtra("contact",mValues.get(position).contact);
                 intent.putExtra("name","Lost By: "+mValues.get(position).lostBy);
                 intent.putExtra("imgUrl",mValues.get(position).imageUrl);
+                intent.putExtra("postuid",mValues.get(position).uid);
+                intent.putExtra("avatar",mValues.get(position).avatar);
+                intent.putExtra("btnTitle","Help");
                 context.startActivity(intent);
 
             }

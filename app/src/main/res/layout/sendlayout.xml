@@ -9,21 +9,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_margin="6dp"
-        android:elevation="10dp"
-        android:backgroundTint="@color/quantum_vanillablue800"
+        android:elevation="90dp"
+        android:backgroundTint="@color/quantum_vanillablue900"
         android:background="@drawable/edit_text_design">
 
         <TextView
-            android:maxWidth="300dp"
+            android:id="@+id/sendMessageTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:textColor="@color/white"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:maxWidth="300dp"
             android:padding="5dp"
-            android:layout_margin="2dp"
-            android:id="@+id/sendMessageTxt"
             android:text="sender"
-            />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

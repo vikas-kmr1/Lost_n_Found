@@ -9,6 +9,7 @@ public class CreatePost {
     public String contact;
     public String postImgUrl ;
     public String uid ;
+    public String avatar ;
 
     public String getPostImgUrl() {
         return postImgUrl;
@@ -48,8 +49,11 @@ public class CreatePost {
     public String getContact() {
         return contact;
     }
+    public String getAvatar() {
+        return avatar;
+    }
 
-    public CreatePost(String status, String title, String description, String location, String date, String contact ,String postImgUrl,String uid, String username) {
+    public CreatePost(String status, String title, String description, String location, String date, String contact ,String postImgUrl,String uid, String username,String avatar) {
         this.status = status;
         this.title = title;
         this.description = description;
@@ -59,6 +63,7 @@ public class CreatePost {
         this.postImgUrl = postImgUrl;
         this.uid = uid;
         this.username = username;
+        this.avatar = avatar;
     }
 
     public CreatePost() {

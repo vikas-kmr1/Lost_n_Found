@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity implements TabLayout.OnTabS
 
 //        floatingTwitter.setBackground(getDrawable(R.drawable.ic_header_twitter));
 //        floatingFb.setBackground(getDrawable(R.drawable.facebook_icon));
-            floatingGooogle.setBackground(getDrawable(R.drawable.google_icon));
-            floatingGooogle.setBackground(getDrawable(R.drawable.google_icon));
+//            floatingGooogle.setBackground(getDrawable(R.drawable.google_icon));
+//            floatingGooogle.setBackground(getDrawable(R.drawable.google_icon));
 
 
             // floatingTwitter.setTranslationY(300);

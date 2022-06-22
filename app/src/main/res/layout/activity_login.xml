@@ -143,17 +143,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/fab_google"
         android:layout_width="70sp"
         android:layout_height="70sp"
-        android:padding="5dp"
-        app:shapeAppearance="@style/Circular"
+        android:padding="0dp"
         android:clickable="true"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal"
         android:focusable="true"
-        android:elevation="25dp"
-        android:src="@drawable/google_icon"
+        android:elevation="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

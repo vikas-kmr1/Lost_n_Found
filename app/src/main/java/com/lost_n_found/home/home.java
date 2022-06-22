@@ -44,145 +44,162 @@ public class home extends AppCompatActivity {
     ActivityHomeBinding binding;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityHomeBinding.inflate(getLayoutInflater());
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
-        FragmentTransaction Profile= getSupportFragmentManager().beginTransaction();
-        Profile.replace(R.id.fragment_container_view_tag,new ProfielFragment());
+        FragmentTransaction Profile = getSupportFragmentManager().beginTransaction();
+        Profile.replace(R.id.fragment_container_view_tag, new ProfielFragment());
         Profile.commit();
         binding.bottomBar.setItemActiveIndex(3);
 
 
-      try {
-          FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-          FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-          String uid = firebaseUser.getUid();
+        try {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            String uid = firebaseUser.getUid();
 
-          FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-          FirebaseFirestore db = FirebaseFirestore.getInstance();
-          DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user");
-          DatabaseReference databaseReferencePosts = firebaseDatabase.getReference("posts/"+uid);
-          DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DatabaseReference databaseReferenceUser = firebaseDatabase.getReference("user");
+            DatabaseReference databaseReferencePosts = firebaseDatabase.getReference("posts/" + uid);
+            DatabaseReference databaseReferenceChats = firebaseDatabase.getReference("chats/");
+            DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
 
-          databaseReferenceUser.addValueEventListener(new ValueEventListener() {
-              @Override
-              public void onDataChange(@NonNull DataSnapshot snapshot) {
-                  PlaceholderChatContent.ITEMS.clear();
-                  for (DataSnapshot snap : snapshot.getChildren()) {
-                      CreateUser User = snap.getValue(CreateUser.class);
-                      assert User != null;
-                      if (!firebaseUser.getUid().equals(User.getUid())) {
-                          PlaceholderChatContent.PlaceholderItem obj = new PlaceholderChatContent.PlaceholderItem(User.getUid(), User.getUsername(), User.getAvatar());
-                          PlaceholderChatContent.ITEMS.add(obj);
-                      }
+            databaseReferenceChats.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    PlaceholderChatContent.ITEMS.clear();
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        CreateUser User = snap.getValue(CreateUser.class);
 
-                  }
+                        String sent_recieve_room = snap.getKey().toString();
 
-              }
+                        if (firebaseUser.getUid().toString().equals(sent_recieve_room.substring(0,uid.length())) ) {
+                            String receiverUid = snap.getKey().toString().substring(uid.length(),sent_recieve_room.length());
 
-              @Override
-              public void onCancelled(@NonNull DatabaseError error) {
+                            DatabaseReference receiverUserData = firebaseDatabase.getReference("user").child(receiverUid);
 
-              }
-          });
+                            receiverUserData.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                                    CreateUser user = snapshot.getValue(CreateUser.class);
+                                    PlaceholderChatContent.PlaceholderItem obj = new PlaceholderChatContent.PlaceholderItem(user.getUid(), user.getUsername(),user.getAvatar());
+                                    PlaceholderChatContent.ITEMS.add(obj);
+                                }
 
-          databaseReference.addValueEventListener(new ValueEventListener() {
-              @Override
-              public void onDataChange(@NonNull DataSnapshot snapshot) {
-                  PlaceholderFoundContent.ITEMS.clear();
-                  PlaceholderLostContent.ITEMS.clear();
-                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                      //Log.v("-11>",snapshot1.getChildrenCount()+"");
-                      for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                          CreatePost post = snapshot2.getValue(CreatePost.class);
-                          String title = post.getTitle().toString();
-                          String date = post.getDate().toString();
-                          String descp = post.getDescription();
-                          String status = post.getStatus().toString();
-                          String location = post.getLocation().toString();
-                          String userid = post.getUid().toString();
-                          String username = post.getUsername().toString();
-                          String imageUrl = post.getPostImgUrl().toString();
-                          String contact = post.getContact().toString();
-                          if (status.equals("lost")) {
-                              PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
-                              PlaceholderLostContent.ITEMS.add(0, obj);
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
-                          } else {
-                              PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
-                              PlaceholderFoundContent.ITEMS.add(0, obj);
-
-                          }
-
-
-                      }
-                  }
-
-
-              }
-
-              @Override
-              public void onCancelled(@NonNull DatabaseError error) {
-
-              }
-          });
-
-
-          databaseReferencePosts.addChildEventListener(new ChildEventListener() {
-              @Override
-              public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                  CreatePost post = snapshot.getValue(CreatePost.class);
-                  String title = post.getTitle().toString();
-                  String date = post.getDate().toString();
-                  String descp = post.getDescription();
-                  String status = post.getStatus().toString();
-                  String location = post.getLocation().toString();
-                  String userid = post.getUid().toString();
-                  String contact = post.getContact().toString();
-                  String username = post.getUsername().toString();
-                  String imageUrl = post.getPostImgUrl().toString();
-                  PlaceholderContent.PlaceholderItem obj = new PlaceholderContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
-                  PlaceholderContent.ITEMS.add(obj);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    PlaceholderFoundContent.ITEMS.clear();
+                    PlaceholderLostContent.ITEMS.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        //Log.v("-11>",snapshot1.getChildrenCount()+"");
+                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                            CreatePost post = snapshot2.getValue(CreatePost.class);
+                            String title = post.getTitle().toString();
+                            String date = post.getDate().toString();
+                            String descp = post.getDescription();
+                            String status = post.getStatus().toString();
+                            String location = post.getLocation().toString();
+                            String userid = post.getUid().toString();
+                            String username = post.getUsername().toString();
+                            String imageUrl = post.getPostImgUrl().toString();
+                            String contact = post.getContact().toString();
+                            String avatar = post.getAvatar().toString();
+                            if (status.equals("lost")) {
+                                PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact, avatar);
+                                PlaceholderLostContent.ITEMS.add(0, obj);
 
 
-              }
+                            } else {
+                                PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact, avatar);
+                                PlaceholderFoundContent.ITEMS.add(0, obj);
 
-              @Override
-              public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            }
 
-              }
 
-              @Override
-              public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                        }
+                    }
 
-              }
 
-              @Override
-              public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                }
 
-              }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-              @Override
-              public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
 
-              }
-          });
 
-      }
-      catch (Exception e){
-          Log.d("home @ Exception", e+"");
+            databaseReferencePosts.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-      }
+                    CreatePost post = snapshot.getValue(CreatePost.class);
+                    String title = post.getTitle().toString();
+                    String date = post.getDate().toString();
+                    String descp = post.getDescription();
+                    String status = post.getStatus().toString();
+                    String location = post.getLocation().toString();
+                    String userid = post.getUid().toString();
+                    String contact = post.getContact().toString();
+                    String username = post.getUsername().toString();
+                    String imageUrl = post.getPostImgUrl().toString();
+                    PlaceholderContent.PlaceholderItem obj = new PlaceholderContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
+                    PlaceholderContent.ITEMS.add(obj);
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        } catch (Exception e) {
+            Log.d("home @ Exception", e + "");
+
+        }
 
         //checking network connection
         boolean connected = false;
@@ -193,7 +210,7 @@ public class home extends AppCompatActivity {
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
             connected = networkInfo != null && networkInfo.isAvailable() &&
                     networkInfo.isConnected();
-            if (!connected){
+            if (!connected) {
                 AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).setIcon(R.drawable.no_net).setTitle("NO INTERNET").setMessage("turn on mobile data or wifi")
                         .setPositiveButton("turn on", new DialogInterface.OnClickListener() {
                             @Override
@@ -219,35 +236,31 @@ public class home extends AppCompatActivity {
         }
 
 
-
-
-
         binding.bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int i) {
-                switch (i)
-                {
+                switch (i) {
                     case 0:
-                        FragmentTransaction home= getSupportFragmentManager().beginTransaction();
-                        home.replace(R.id.fragment_container_view_tag,new HomeFragment());
+                        FragmentTransaction home = getSupportFragmentManager().beginTransaction();
+                        home.replace(R.id.fragment_container_view_tag, new HomeFragment());
                         home.commit();
                         break;
                     case 1:
 
-                        FragmentTransaction Post= getSupportFragmentManager().beginTransaction();
-                        Post.replace(R.id.fragment_container_view_tag,new PostsFragment());
+                        FragmentTransaction Post = getSupportFragmentManager().beginTransaction();
+                        Post.replace(R.id.fragment_container_view_tag, new PostsFragment());
                         Post.commit();
                         break;
                     case 2:
-                        FragmentTransaction Map= getSupportFragmentManager().beginTransaction();
-                        Map.replace(R.id.fragment_container_view_tag,new MapsFragment0());
+                        FragmentTransaction Map = getSupportFragmentManager().beginTransaction();
+                        Map.replace(R.id.fragment_container_view_tag, new MapsFragment0());
                         Map.commit();
                         break;
 
                     case 3:
 
-                        FragmentTransaction Profile= getSupportFragmentManager().beginTransaction();
-                        Profile.replace(R.id.fragment_container_view_tag,new ProfielFragment());
+                        FragmentTransaction Profile = getSupportFragmentManager().beginTransaction();
+                        Profile.replace(R.id.fragment_container_view_tag, new ProfielFragment());
                         Profile.commit();
                         break;
                 }
@@ -256,31 +269,25 @@ public class home extends AppCompatActivity {
         });
 
 
-
-
-
-
         ActivityResultLauncher<String[]> locationPermissionRequest =
                 registerForActivityResult(new ActivityResultContracts
                                 .RequestMultiplePermissions(), result -> {
-                    Boolean fineLocationGranted = null;
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        fineLocationGranted = result.getOrDefault(
-                                Manifest.permission.ACCESS_FINE_LOCATION, false);
-                    }
-                    Boolean coarseLocationGranted = null;
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        coarseLocationGranted = result.getOrDefault(
-                                Manifest.permission.ACCESS_COARSE_LOCATION, false);
-                    }
-                    if (fineLocationGranted != null && fineLocationGranted) {
-                                // Precise location access granted.
-                             //   Toast.makeText(home.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                            Boolean fineLocationGranted = null;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                fineLocationGranted = result.getOrDefault(
+                                        Manifest.permission.ACCESS_FINE_LOCATION, false);
                             }
-
-                    else if (coarseLocationGranted != null && coarseLocationGranted) {
+                            Boolean coarseLocationGranted = null;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                coarseLocationGranted = result.getOrDefault(
+                                        Manifest.permission.ACCESS_COARSE_LOCATION, false);
+                            }
+                            if (fineLocationGranted != null && fineLocationGranted) {
+                                // Precise location access granted.
+                                //   Toast.makeText(home.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                            } else if (coarseLocationGranted != null && coarseLocationGranted) {
                                 // Only approximate location access granted.
-                               // Toast.makeText(home.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(home.this, "Permission Granted", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 Intent intent = new Intent();
@@ -308,12 +315,7 @@ public class home extends AppCompatActivity {
         });
 
 
-
-
-
     }
-
-
 
 
     public void onConnected(@Nullable Bundle bundle) {
@@ -330,4 +332,4 @@ public class home extends AppCompatActivity {
 
     }
 
-   }
+}

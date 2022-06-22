@@ -67,6 +67,9 @@ public class MyFoundItemRecyclerViewAdapter extends RecyclerView.Adapter<MyFound
                     intent.putExtra("contact",mValues.get(position).contact);
                     intent.putExtra("name","Found By: "+mValues.get(position).foundBy);
                     intent.putExtra("imgUrl",mValues.get(position).imageUrl);
+                    intent.putExtra("postuid",mValues.get(position).uid);
+                    intent.putExtra("avatar",mValues.get(position).avatar);
+                    intent.putExtra("btnTitle","Claim");
                     context.startActivity(intent);
 
                 }

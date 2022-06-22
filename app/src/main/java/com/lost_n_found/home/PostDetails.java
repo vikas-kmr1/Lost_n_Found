@@ -3,6 +3,7 @@ package com.lost_n_found.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,13 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
 import com.lost_n_found.R;
+import com.lost_n_found.home.chatMessages.chatActivity;
 
 public class PostDetails extends AppCompatActivity {
     ImageView postImgView;
     TextView dateT, desT, contactT, locationT, titleT;
     Chip chip;
     ImageButton bckBtn;
+    Button helpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class PostDetails extends AppCompatActivity {
         chip = findViewById(R.id.chipdetails);
         titleT = findViewById(R.id.detailsTitle);
         bckBtn = findViewById(R.id.backButtonTopPDetails);
+        helpBtn = findViewById(R.id.helpBtnDetails);
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
@@ -39,8 +44,14 @@ public class PostDetails extends AppCompatActivity {
         String des = intent.getStringExtra("des");
         String location = intent.getStringExtra("location");
         String contact = intent.getStringExtra("contact");
+
         String name = intent.getStringExtra("name");
         String imgUrl = intent.getStringExtra("imgUrl");
+        String btnTitle = intent.getStringExtra("btnTitle");
+        String postuid = intent.getStringExtra("postuid");
+        String avatar = intent.getStringExtra("avatar");
+        String []nameArr = name.split(":");
+
 
         titleT.setText(title);
         dateT.setText(date);
@@ -49,6 +60,27 @@ public class PostDetails extends AppCompatActivity {
         locationT.setText(location);
         chip.setText(name);
         Glide.with(getApplicationContext()).load(imgUrl).into(postImgView);
+
+        if (!btnTitle.equals("mypost") && !postuid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+            helpBtn.setText(btnTitle);
+            helpBtn.setVisibility(View.VISIBLE);
+        }
+
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getApplicationContext(), chatActivity.class);
+                intent.putExtra("name", nameArr[1].trim());
+                intent.putExtra("avatar", avatar);
+                intent.putExtra("uid",postuid);
+                startActivity(intent);
+
+
+            }
+        });
 
 
         bckBtn.setOnClickListener(new View.OnClickListener() {

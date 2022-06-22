@@ -46,10 +46,11 @@ public class PlaceholderFoundContent {
         public final String foundBy;
         public final String imageUrl;
         public final String contact;
+        public final String avatar;
 
 
 
-        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String foundBy , String imageUrl,String contact) {
+        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String foundBy , String imageUrl,String contact,String avatar) {
             this.uid = uid;
             this.title = title;
             this.status = status;
@@ -59,6 +60,7 @@ public class PlaceholderFoundContent {
             this.foundBy = foundBy;
             this.imageUrl = imageUrl;
             this.contact = contact;
+            this.avatar = avatar;
         }
 
 

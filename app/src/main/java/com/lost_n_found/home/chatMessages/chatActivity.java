@@ -1,5 +1,6 @@
 package com.lost_n_found.home.chatMessages;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,27 +30,27 @@ import java.util.ArrayList;
 
 public class chatActivity extends AppCompatActivity {
 
+    ArrayList<CreateMessage> messageArrayList;
+    MessageAdapter messageAdapter;
+    String receiverRoom = null;
+    String senderRoom = null;
     private RecyclerView messageRecyclerView;
     private EditText messageBox;
-    private ShapeableImageView sentBtn,mAvatar;
+    private ShapeableImageView sentBtn, mAvatar;
     private TextView nameTxt;
     private ImageView bacckbtn;
     private DatabaseReference mDbRef;
-    ArrayList<CreateMessage> messageArrayList ;
-    MessageAdapter messageAdapter;
-
-    String receiverRoom = null;
-    String senderRoom = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        ProgressDialog progressDialog = new ProgressDialog(this);
 
         messageRecyclerView = (RecyclerView) findViewById(R.id.messageRecycler);
         messageBox = (EditText) findViewById(R.id.messageText);
+
 
         sentBtn = (ShapeableImageView) findViewById(R.id.sendBtn);
         mAvatar = (ShapeableImageView) findViewById(R.id.toolbatAvatar);
@@ -59,28 +60,29 @@ public class chatActivity extends AppCompatActivity {
 
         ArrayList<CreateMessage> messageArrayList = new ArrayList<CreateMessage>();
 
-        messageAdapter  = new MessageAdapter(this,messageArrayList) ;
+        messageAdapter = new MessageAdapter(this, messageArrayList);
 
 
         messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         messageRecyclerView.setAdapter(messageAdapter);
+
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String avatar = intent.getStringExtra("avatar");
         String recieverUid = intent.getStringExtra("uid");
-
         String senderUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         senderRoom = recieverUid + senderUid;
         receiverRoom = senderUid + recieverUid;
 
-        if(messageBox.getText().toString().equals("")){
+        if (messageBox.getText().toString().equals("")) {
             sentBtn.setEnabled(false);
             sentBtn.setAlpha(0.5f);
         }
 
         nameTxt.setText(name);
         Glide.with(getApplicationContext()).load(avatar).into(mAvatar);
+       //Toast.makeText(this, recieverUid, Toast.LENGTH_LONG).show();
 
         bacckbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,15 +100,15 @@ public class chatActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(count == 0){
+                if (s.length() == 0) {
                     sentBtn.setEnabled(false);
                     sentBtn.setAlpha(0.5f);
-                }
-                else{
+                } else {
                     sentBtn.setEnabled(true);
                     sentBtn.setAlpha(1f);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -119,9 +121,11 @@ public class chatActivity extends AppCompatActivity {
         sentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
+
 
                 String currentMessage = messageBox.getText().toString();
-                CreateMessage createMessage = new CreateMessage(currentMessage+"",senderUid+"");
+                CreateMessage createMessage = new CreateMessage(currentMessage + "", senderUid + "");
 
                 mDbRef.child("chats").child(senderRoom).child("messages").push().setValue(createMessage).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -129,15 +133,19 @@ public class chatActivity extends AppCompatActivity {
                         mDbRef.child("chats").child(receiverRoom).child("messages").push().setValue(createMessage).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
+
                                 messageBox.setText("");
+
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
                             }
                         });
                     }
-                }) ;
+                });
 
 
             }
-
 
 
         });
@@ -145,23 +153,23 @@ public class chatActivity extends AppCompatActivity {
 
         //logic for adding datat to recycler view
         mDbRef.child("chats").child(senderRoom).child("messages").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        messageArrayList.clear();
-                        for(DataSnapshot snap : snapshot.getChildren()){
-                            CreateMessage createMessage = snap.getValue(CreateMessage.class);
-                            assert createMessage != null;
-                            messageArrayList.add(new CreateMessage(createMessage.getMessage()+"", createMessage.getSenderId()+""));
-                        }
-                        messageAdapter.notifyDataSetChanged();
-                        messageRecyclerView.scrollToPosition(messageAdapter.getItemCount()-1);
-                    }
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messageArrayList.clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    CreateMessage createMessage = snap.getValue(CreateMessage.class);
+                    assert createMessage != null;
+                    messageArrayList.add(new CreateMessage(createMessage.getMessage() + "", createMessage.getSenderId() + ""));
+                }
+                messageAdapter.notifyDataSetChanged();
+                messageRecyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+            }
+        });
 
 
     }

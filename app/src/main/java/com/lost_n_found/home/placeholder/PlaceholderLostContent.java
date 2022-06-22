@@ -44,13 +44,14 @@ public class PlaceholderLostContent {
         public final String lostBy;
         public final String imageUrl;
         public final String contact;
+        public final String avatar;
 
 
 
 
 
 
-        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String lostBy ,String imageUrl,String contact) {
+        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String lostBy ,String imageUrl,String contact,String avatar) {
             this.uid = uid;
             this.title = title;
             this.status = status;
@@ -60,6 +61,7 @@ public class PlaceholderLostContent {
             this.lostBy = lostBy;
             this.imageUrl = imageUrl;
             this.contact = contact;
+            this.avatar = avatar;
         }
     }
 

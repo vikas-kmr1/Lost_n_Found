@@ -37,6 +37,10 @@
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lost_n_Found">
+
+<!--        android:largeHeap="true"-->
+<!--        android:hardwareAccelerated="false"-->
+
         <activity
             android:name=".home.chatMessages.chatActivity"
             android:exported="false"
@@ -52,10 +56,6 @@
         <activity
             android:name=".home.AboutActivity"
             android:exported="false" />
-        <!--
-           android:largeHeap="true"
-        android:hardwareAccelerated="false"
-        -->
         <activity
             android:name=".home.editProfile"
             android:exported="false"

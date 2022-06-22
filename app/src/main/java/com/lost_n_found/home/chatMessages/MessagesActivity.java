@@ -2,11 +2,15 @@ package com.lost_n_found.home.chatMessages;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.lost_n_found.R;
+import com.lost_n_found.home.chatMessages.placeholder.PlaceholderChatContent;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -17,6 +21,9 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
 
         toolbar =  findViewById(R.id.toolbarMessages);
+        ImageView noMessage = (ImageView) findViewById(R.id.nomessageChat);
+        TextView noMessageTxt = (TextView) findViewById(R.id.nochat);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -25,6 +32,10 @@ public class MessagesActivity extends AppCompatActivity {
         Profile.replace(R.id.messageFrame, new ChatFragment());
         Profile.commitAllowingStateLoss();
 
+        if(PlaceholderChatContent.ITEMS.size() == 0){
+            noMessage.setVisibility(View.VISIBLE);
+            noMessageTxt.setVisibility(View.VISIBLE);
+        }
 
 
 
