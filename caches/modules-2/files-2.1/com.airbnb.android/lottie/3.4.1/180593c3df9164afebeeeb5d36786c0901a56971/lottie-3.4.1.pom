@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.airbnb.android</groupId>
+  <artifactId>lottie</artifactId>
+  <version>3.4.1</version>
+  <packaging>aar</packaging>
+  <name>Lottie</name>
+  <description>Lottie is an animation library that renders Adobe After Effects animations natively in realtime.</description>
+  <url>https://github.com/airbnb/lottie-android</url>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://github.com/airbnb/lottie-android/blob/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>airbnb</id>
+      <name>Airbnb</name>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git@github.com:airbnb/lottie-android.git</connection>
+    <developerConnection>scm:git@github.com:airbnb/lottie-android.git</developerConnection>
+    <url>https://github.com/airbnb/lottie-android</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>androidx.appcompat</groupId>
+      <artifactId>appcompat</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio</artifactId>
+      <version>1.17.4</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

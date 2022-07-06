@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.droidsonroids.gif</groupId>
+  <artifactId>android-gif-drawable</artifactId>
+  <version>1.2.22</version>
+  <packaging>aar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>pl.droidsonroids.relinker</groupId>
+      <artifactId>relinker</artifactId>
+      <version>1.4.1</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <name>android-gif-drawable</name>
+  <url>https://github.com/koral--/android-gif-drawable</url>
+  <description>Views and Drawable for displaying animated GIFs for Android</description>
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>https://github.com/koral--/android-gif-drawable/blob/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/koral--/android-gif-drawable.git</url>
+  </scm>
+  <issueManagement>
+    <url>https://github.com/koral--/android-gif-drawable/issues</url>
+    <system>GitHub issues</system>
+  </issueManagement>
+  <ciManagement>
+    <url>https://app.bitrise.io/app/f12c77eeaf952ab0#/builds</url>
+    <system>Bitrise</system>
+  </ciManagement>
+  <developers>
+    <developer>
+      <id>koral--</id>
+      <name>Karol Wrótniak</name>
+      <roles>
+        <role>Core developer</role>
+      </roles>
+      <url>https://github.com/koral--</url>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Oleg Sukhodolsky</name>
+      <url>https://github.com/os97673</url>
+    </contributor>
+    <contributor>
+      <name>Adam Brown</name>
+      <url>https://github.com/Wavesonics</url>
+    </contributor>
+    <contributor>
+      <name>Stan Mots</name>
+      <url>https://github.com/stanmots</url>
+    </contributor>
+    <contributor>
+      <name>davidmind</name>
+      <url>https://github.com/davidmind</url>
+    </contributor>
+    <contributor>
+      <name>edwin</name>
+      <url>https://github.com/gqjjqg</url>
+    </contributor>
+    <contributor>
+      <name>Shai Ber</name>
+      <url>https://github.com/ShaiBer</url>
+    </contributor>
+    <contributor>
+      <name>Qingzhuo</name>
+      <url>https://github.com/veniversum</url>
+    </contributor>
+    <contributor>
+      <name>Hung PHAN</name>
+      <url>https://github.com/pdhung3012</url>
+    </contributor>
+    <contributor>
+      <name>Droids On Roids code sentry</name>
+      <url>https://github.com/FaultLessDroid</url>
+    </contributor>
+    <contributor>
+      <name>Daniil Popov</name>
+      <url>https://github.com/int02h</url>
+    </contributor>
+    <contributor>
+      <name>marcin-adamczewski</name>
+      <url>https://github.com/marcin-adamczewski</url>
+    </contributor>
+    <contributor>
+      <name>clyfish</name>
+      <url>https://github.com/clyfish</url>
+    </contributor>
+    <contributor>
+      <name>默默</name>
+      <url>https://github.com/wangqiang1588</url>
+    </contributor>
+    <contributor>
+      <name>Tu Yimin</name>
+      <url>https://github.com/mmin18</url>
+    </contributor>
+    <contributor>
+      <name>Ray Li</name>
+      <url>https://github.com/searchy2</url>
+    </contributor>
+    <contributor>
+      <name>Michael Evans</name>
+      <url>https://github.com/MichaelEvans</url>
+    </contributor>
+    <contributor>
+      <name>Frank Monza</name>
+      <url>https://github.com/frmz</url>
+    </contributor>
+    <contributor>
+      <name>Dmitriy Zaitsev</name>
+      <url>https://github.com/DmitriyZaitsev</url>
+    </contributor>
+    <contributor>
+      <name>Bruno Wieczorek</name>
+      <url>https://github.com/burnoo</url>
+    </contributor>
+    <contributor>
+      <name>Brad Martin</name>
+      <url>https://github.com/bradmartin</url>
+    </contributor>
+    <contributor>
+      <name>shifujun</name>
+      <url>https://github.com/shifujun</url>
+    </contributor>
+  </contributors>
+</project>

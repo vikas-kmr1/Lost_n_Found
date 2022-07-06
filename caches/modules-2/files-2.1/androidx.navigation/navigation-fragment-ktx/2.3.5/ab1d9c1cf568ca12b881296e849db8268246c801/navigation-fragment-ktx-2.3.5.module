@@ -1,0 +1,153 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.navigation",
+    "module": "navigation-fragment-ktx",
+    "version": "2.3.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.4",
+      "buildId:": "7250267"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-fragment",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime-ktx",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment-ktx",
+          "version": {
+            "requires": "1.2.4"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.3.71"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-fragment-ktx-2.3.5.aar",
+          "url": "navigation-fragment-ktx-2.3.5.aar",
+          "size": 17266,
+          "sha512": "b9af10057449b7f1dc34b315bd9bbcdc0c1bd3cd15e7d875d35660536e9a44d9604f1314a71b984f50e11d8802a9b3462512a81b286d6997d3fb2ab92930121a",
+          "sha256": "5183f76aeed999eef1a611779c4f6e18f64b9e31aed95b103f194caa704e63c9",
+          "sha1": "ba09fb84e4bbb584173dd191a02017668bd698bd",
+          "md5": "1897467bed2d258cdbe68439b16f6ad4"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-fragment",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime-ktx",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment-ktx",
+          "version": {
+            "requires": "1.2.4"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.3.71"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-fragment-ktx-2.3.5.aar",
+          "url": "navigation-fragment-ktx-2.3.5.aar",
+          "size": 17266,
+          "sha512": "b9af10057449b7f1dc34b315bd9bbcdc0c1bd3cd15e7d875d35660536e9a44d9604f1314a71b984f50e11d8802a9b3462512a81b286d6997d3fb2ab92930121a",
+          "sha256": "5183f76aeed999eef1a611779c4f6e18f64b9e31aed95b103f194caa704e63c9",
+          "sha1": "ba09fb84e4bbb584173dd191a02017668bd698bd",
+          "md5": "1897467bed2d258cdbe68439b16f6ad4"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "navigation-fragment-ktx-2.3.5-sources.jar",
+          "url": "navigation-fragment-ktx-2.3.5-sources.jar",
+          "size": 6257,
+          "sha512": "a6b68eb7fa8aeee59fc5e8e204415e67b286000163164b5b28d39e878870811987758b36cbff5b8f27a80cc5519f6312101e5c612853dc55d7134b0121bbd2b4",
+          "sha256": "4cf53654f02d796c3ca1338f2c5c4a3d94045c524f6b88db150f3e218a64a914",
+          "sha1": "9bebacd34921c1dd65c0cf5ceb32f70e8c7b17b9",
+          "md5": "5473b099adf68016e77bd7472e687a4c"
+        }
+      ]
+    }
+  ]
+}

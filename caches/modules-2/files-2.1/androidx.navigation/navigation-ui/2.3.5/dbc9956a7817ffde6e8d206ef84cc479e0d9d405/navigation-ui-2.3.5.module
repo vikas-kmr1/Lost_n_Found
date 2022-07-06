@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.navigation",
+    "module": "navigation-ui",
+    "version": "2.3.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.4",
+      "buildId:": "7250267"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.customview",
+          "module": "customview",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.drawerlayout",
+          "module": "drawerlayout",
+          "version": {
+            "requires": "1.1.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-ui-2.3.5.aar",
+          "url": "navigation-ui-2.3.5.aar",
+          "size": 90091,
+          "sha512": "97d6142cfd8b6ac67d0fa691bdf4c771fcc9f1dae638bfd37875437fe8e1a4d19f5d081879e9f4e48f3089d8317d630b746824a3b9ecc99cb3c8d4750b1b92cd",
+          "sha256": "b80cb813fa61d4c9996c623fe1f6a7628e4fe0a867f7bd8a98f7dc729391a6bc",
+          "sha1": "160e13e6402d2821f39f3fc4db5add2aed00f070",
+          "md5": "1952ff436bbd23590b26b5110f09def1"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime",
+          "version": {
+            "requires": "2.3.5"
+          }
+        },
+        {
+          "group": "androidx.customview",
+          "module": "customview",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.drawerlayout",
+          "module": "drawerlayout",
+          "version": {
+            "requires": "1.1.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.transition",
+          "module": "transition",
+          "version": {
+            "requires": "1.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-ui-2.3.5.aar",
+          "url": "navigation-ui-2.3.5.aar",
+          "size": 90091,
+          "sha512": "97d6142cfd8b6ac67d0fa691bdf4c771fcc9f1dae638bfd37875437fe8e1a4d19f5d081879e9f4e48f3089d8317d630b746824a3b9ecc99cb3c8d4750b1b92cd",
+          "sha256": "b80cb813fa61d4c9996c623fe1f6a7628e4fe0a867f7bd8a98f7dc729391a6bc",
+          "sha1": "160e13e6402d2821f39f3fc4db5add2aed00f070",
+          "md5": "1952ff436bbd23590b26b5110f09def1"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "navigation-ui-2.3.5-sources.jar",
+          "url": "navigation-ui-2.3.5-sources.jar",
+          "size": 13679,
+          "sha512": "ea13b0787ded0e4bd95c52cfd91f9477b0d6ec8a89efd0bdbcb4a5b76211f2f9183fdd0e7f0b00162a867a3b51157c11934514b2243436f15bdc7e895faf8ea7",
+          "sha256": "8faa2bed7d4acf1e7a8bbfc30f2cedf81df32caeeb31b16fc2eeaeeadb42e648",
+          "sha1": "c3b1c72fb42a6c6ea70970fa444614a2aaa64742",
+          "md5": "243d7ce3da37cfbd5c9fb705a4c7ea67"
+        }
+      ]
+    }
+  ]
+}

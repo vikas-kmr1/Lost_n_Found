@@ -1,0 +1,59 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.volley",
+    "module": "volley",
+    "version": "1.2.1",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "5yscygiyuzhvdghxd7tz6yk62a"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "volley-1.2.1.aar",
+          "url": "volley-1.2.1.aar",
+          "size": 140768,
+          "sha512": "e8f6a42d2b73749f23b88f0540e8dc2f8b95db5b4ec7a44f0099e43dfbf8a8c857d7815447b27497168b97a7f5db49ce8a987f2bd29308bcd08f64c6053f3eaf",
+          "sha256": "dbf04a23ff91b6717571afe722fe4bd5776257f59111d7c2cdfb3a9d5f8888ee",
+          "sha1": "d7ccba59e7668b35aa5c11b8daa06b305fa9a82f",
+          "md5": "56d501bb8da252a9865b644037323399"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "volley-1.2.1.aar",
+          "url": "volley-1.2.1.aar",
+          "size": 140768,
+          "sha512": "e8f6a42d2b73749f23b88f0540e8dc2f8b95db5b4ec7a44f0099e43dfbf8a8c857d7815447b27497168b97a7f5db49ce8a987f2bd29308bcd08f64c6053f3eaf",
+          "sha256": "dbf04a23ff91b6717571afe722fe4bd5776257f59111d7c2cdfb3a9d5f8888ee",
+          "sha1": "d7ccba59e7668b35aa5c11b8daa06b305fa9a82f",
+          "md5": "56d501bb8da252a9865b644037323399"
+        }
+      ]
+    }
+  ]
+}
