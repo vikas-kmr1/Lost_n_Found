@@ -125,14 +125,17 @@ public class ProfielFragment extends Fragment {
                 String avatarUrl = dataSnapshot.child("avatar").getValue(String.class).toString();
                 setProfileDp(avatarUrl);
 
-                String fullname = dataSnapshot.child("username").getValue(String.class);
+                String fullname = dataSnapshot.child("username").getValue(String.class)+" ";
                 usernameTop.setText(fullname);
-
+                try{
                 String[] F_Lname = fullname.split(" ");
                 f_name = F_Lname[0];
                 l_name = F_Lname[1];
                 firstName.setText(F_Lname[0]);
-                lastName.setText(F_Lname[1]);
+                lastName.setText(F_Lname[1]);}
+                catch (Exception e){
+
+                }
 
                 enrollment = dataSnapshot.child("enrollment_no").getValue(String.class);
                 enrollTop.setText(enrollment);
@@ -180,10 +183,10 @@ public class ProfielFragment extends Fragment {
 
         try {
 
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();}
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();}
 
-                    Glide.with(getContext()).load(avatarUrl).into(avatar);
+            Glide.with(getContext()).load(avatarUrl).into(avatar);
 
 
         }catch (Exception e) {

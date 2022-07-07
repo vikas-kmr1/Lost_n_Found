@@ -289,7 +289,6 @@ public class NewPost extends AppCompatActivity {
                         linearLayoutimage.setVisibility(View.GONE);
 
 
-
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -298,6 +297,11 @@ public class NewPost extends AppCompatActivity {
                                 finish();
                             }
                         }, 3500);
+                        if(statusStr.equals("lost")){
+                        LostFragment.myLostItemRecyclerViewAdapter.notifyDataSetChanged();}
+                        else{
+                        FoundFragment.myFoundItemRecyclerViewAdapter.notifyDataSetChanged();}
+                        PostItemFragment.myPostItemRecyclerViewAdapter.notifyDataSetChanged();
 
                     }
                 });

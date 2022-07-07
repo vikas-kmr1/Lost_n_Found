@@ -5,38 +5,41 @@
     android:layout_height="200dp"
     android:background="#093D78"
     >
-
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="1dp">
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:elevation="10dp"
         android:id="@+id/ham_head_img"
         android:src="@drawable/augn_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        android:layout_gravity="center"
         app:shapeAppearance="@style/Circular" />
-
 
 
     <TextView
         android:id="@+id/drawer_username"
         android:layout_width="match_parent"
+        android:maxLines="1"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:foregroundGravity="bottom"
+        android:layout_gravity="bottom|center_horizontal"
         android:fontFamily="@font/bangers"
         android:text="N/A"
         android:textAllCaps="true"
         android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        android:layout_marginBottom="15dp"
+        />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

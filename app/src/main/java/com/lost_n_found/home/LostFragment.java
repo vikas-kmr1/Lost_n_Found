@@ -24,6 +24,7 @@ public class LostFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
+    public static MyLostItemRecyclerViewAdapter myLostItemRecyclerViewAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,7 +66,8 @@ public class LostFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyLostItemRecyclerViewAdapter(PlaceholderLostContent.ITEMS,getContext()));
+            myLostItemRecyclerViewAdapter = new MyLostItemRecyclerViewAdapter(PlaceholderLostContent.ITEMS,getContext());
+            recyclerView.setAdapter(myLostItemRecyclerViewAdapter);
         }
         return view;
     }

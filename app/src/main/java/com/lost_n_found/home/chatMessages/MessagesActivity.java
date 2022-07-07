@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.lost_n_found.R;
+import com.lost_n_found.home.HomeFragment;
 import com.lost_n_found.home.chatMessages.placeholder.PlaceholderChatContent;
+import com.lost_n_found.home.home;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -45,9 +47,18 @@ public class MessagesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
+            HomeFragment.msgNotify.setVisibility(View.INVISIBLE);
+            home.notification = false;
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        home.notification = false;
+        HomeFragment.msgNotify.setVisibility(View.INVISIBLE);
+        super.onBackPressed();
+
+    }
 }

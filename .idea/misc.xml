@@ -33,6 +33,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_about.xml" value="0.1628901239846088" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_chat.xml" value="0.1" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_edit_profile.xml" value="0.176" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_foget.xml" value="0.1" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_ham_nav.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_home.xml" value="0.12" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/layout/activity_login.xml" value="0.2" />
@@ -89,6 +90,7 @@
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/menu/navigation__ham_b.xml" value="0.1299342105263158" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/menu/navigation_menu.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2111111111111111" />
+        <entry key="..\:/Users/vicky/AndroidStudioProjects/Lost_n_Found/app/src/main/res/mipmap-anydpi-v26/ic_launcher_new.xml" value="0.127" />
       </map>
     </option>
   </component>

@@ -56,6 +56,8 @@ public class Login_Signup_Fragment extends Fragment {
     LottieAnimationView lottieAnimationView ;
     TextView verifyTExt;
     CardView cardView ;
+    RadioButton radioMale ;
+    RadioButton radioFemale;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -180,8 +182,8 @@ public class Login_Signup_Fragment extends Fragment {
                     }
 
                     else {
-                        RadioButton radioMale = root.findViewById(R.id.male);
-                        RadioButton radioFemale = root.findViewById(R.id.female);
+                        radioMale = root.findViewById(R.id.male);
+                        radioFemale = root.findViewById(R.id.female);
                         if (radioMale.isChecked()) {
                             gender = "male";
                         } else if (radioFemale.isChecked()) {
@@ -206,8 +208,8 @@ public class Login_Signup_Fragment extends Fragment {
     }
 
     private void SignUpFun(String email_user, String pass_user, String user_name) {
-        final String email = email_user;
-        final String password = pass_user;
+        final String email_ = email_user;
+        final String passwordUser = pass_user;
 
         ActionCodeSettings actionCodeSettings =
                 ActionCodeSettings.newBuilder()
@@ -224,7 +226,7 @@ public class Login_Signup_Fragment extends Fragment {
                         .build();
 
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email_, passwordUser)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -239,6 +241,13 @@ public class Login_Signup_Fragment extends Fragment {
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
+
+                                    fullname.setText("");
+                                    confirm_password.setText("");
+                                    password.setText("");
+                                    email.setText("");
+                                    radioFemale.setChecked(false);
+                                    radioMale.setChecked(false);
                                     if(progressDialog.isShowing()){
                                         progressDialog.dismiss();
                                     }
@@ -250,7 +259,7 @@ public class Login_Signup_Fragment extends Fragment {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(requireContext(), "Check your inbox", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getContext(), "Check your inbox", Toast.LENGTH_LONG).show();
                                         }
                                     }, 5000);
 
@@ -275,7 +284,7 @@ public class Login_Signup_Fragment extends Fragment {
                                 Log.d("signup successfully", "createUserWithEmail:success");
 
 
-                                addUserToDatabase(user_name, email, mAuth.getCurrentUser().getUid());
+                                addUserToDatabase(user_name, email_, mAuth.getCurrentUser().getUid());
 //                                Intent intent = new Intent(getActivity(), home.class);
 //                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                requireActivity().finish();

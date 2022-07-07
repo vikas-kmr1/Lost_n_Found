@@ -3,15 +3,22 @@ package com.lost_n_found.home;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.lost_n_found.R;
 import com.lost_n_found.databinding.FragmentFoundBinding;
 import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
@@ -47,12 +54,27 @@ public class MyFoundItemRecyclerViewAdapter extends RecyclerView.Adapter<MyFound
          String sts = mValues.get(position).status+"";
 
         if (sts.equals("found")){
+            holder.mShimmer.startShimmerAnimation();
             holder.mItem = mValues.get(position);
            // holder.mIdView.setText(mValues.get(position).uid);
             holder.mContentTitle.setText(mValues.get(position).title);
             holder.mContentfoundBy.setText(mValues.get(position).foundBy);
-            holder.mContentdate.setText(mValues.get(position).date);
-            Glide.with(context).load(mValues.get(position).imageUrl).into(holder.mContentimage);
+            holder.mContentdate.setText(mValues.get(position).dateStr);
+
+            Glide.with(context).load(mValues.get(position).imageUrl).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    holder.mShimmer.stopShimmerAnimation();
+
+                    return false;
+                }
+            }).into(holder.mContentimage);
+
 
 
             holder.itemView.findViewById(R.id.linearLayoutRecycler).setOnClickListener(new View.OnClickListener() {
@@ -61,7 +83,7 @@ public class MyFoundItemRecyclerViewAdapter extends RecyclerView.Adapter<MyFound
                     Intent intent = new Intent(context.getApplicationContext(),PostDetails.class);
                     intent.putExtra("title",holder.mContentTitle.getText());
                     intent.putExtra("status",holder.mContentTitle.getText());
-                    intent.putExtra("date",holder.mContentdate.getText());
+                    intent.putExtra("date","found on: "+ holder.mContentdate.getText());
                     intent.putExtra("des",mValues.get(position).description);
                     intent.putExtra("location",mValues.get(position).location);
                     intent.putExtra("contact",mValues.get(position).contact);
@@ -89,6 +111,7 @@ public class MyFoundItemRecyclerViewAdapter extends RecyclerView.Adapter<MyFound
         public final TextView mContentdate;
         public final ImageView mContentimage;
         public PlaceholderItem mItem;
+        public ShimmerFrameLayout mShimmer;
 
         public ViewHolder(FragmentFoundBinding binding) {
             super(binding.getRoot());
@@ -97,6 +120,8 @@ public class MyFoundItemRecyclerViewAdapter extends RecyclerView.Adapter<MyFound
             mContentfoundBy = binding.FoundByText;
             mContentdate = binding.dateText;
             mContentimage = binding.imageFound;
+            mShimmer = binding.shimmerViewContainer;
+
         }
 
 

@@ -23,7 +23,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,10 +37,17 @@ import com.lost_n_found.home.placeholder.PlaceholderFoundContent;
 import com.lost_n_found.home.placeholder.PlaceholderLostContent;
 import com.lost_n_found.login.CreateUser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import me.ibrahimsn.lib.OnItemSelectedListener;
 
 public class home extends AppCompatActivity {
     ActivityHomeBinding binding;
+    public static boolean notification =false;
+    public  boolean allowNotification =false;
+
 
 
     @Override
@@ -74,6 +80,9 @@ public class home extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     PlaceholderChatContent.ITEMS.clear();
+                    if(allowNotification){
+                        notification = true;
+                    }
                     for (DataSnapshot snap : snapshot.getChildren()) {
                         CreateUser User = snap.getValue(CreateUser.class);
 
@@ -103,6 +112,8 @@ public class home extends AppCompatActivity {
 
                     }
 
+                    allowNotification = true;
+
                 }
 
                 @Override
@@ -127,28 +138,41 @@ public class home extends AppCompatActivity {
                             String status = post.getStatus().toString();
                             String location = post.getLocation().toString();
                             String userid = post.getUid().toString();
-                            String username = post.getUsername().toString();
                             String imageUrl = post.getPostImgUrl().toString();
                             String contact = post.getContact().toString();
                             String avatar = post.getAvatar().toString();
-                            if (status.equals("lost")) {
-                                PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact, avatar);
-                                PlaceholderLostContent.ITEMS.add(0, obj);
+                            databaseReferenceUser.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String username  = snapshot.child(userid).child("username").getValue()+"";
+                                    Date date1 = null;
+                                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+                                    try {
+                                        date1 = format.parse(date);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    if (status.equals("lost")) {
+
+                                        PlaceholderLostContent.PlaceholderItem obj = new PlaceholderLostContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date1 , location + "", username + "", imageUrl + "", contact, avatar, date+"");
+                                        PlaceholderLostContent.ITEMS.add( obj);
 
 
-                            } else {
-                                PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact, avatar);
-                                PlaceholderFoundContent.ITEMS.add(0, obj);
+                                    } else {
+                                        PlaceholderFoundContent.PlaceholderItem obj = new PlaceholderFoundContent.PlaceholderItem(userid + "", title + "", status + "", descp + "", date1, location + "", username + "", imageUrl + "", contact, avatar,date+"");
+                                        PlaceholderFoundContent.ITEMS.add(0, obj);
+                                    }
 
-                            }
+                                }
 
-
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
                         }
                     }
-
-
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -156,37 +180,36 @@ public class home extends AppCompatActivity {
             });
 
 
-            databaseReferencePosts.addChildEventListener(new ChildEventListener() {
+            databaseReferencePosts.orderByValue().addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    PlaceholderContent.ITEMS.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                        CreatePost post = snapshot1.getValue(CreatePost.class);
+                        String title = post.getTitle().toString();
+                        String date = post.getDate().toString();
+                        String descp = post.getDescription();
+                        String status = post.getStatus().toString();
+                        String location = post.getLocation().toString();
+                        String userid = post.getUid().toString();
+                        String contact = post.getContact().toString();
+                        String imageUrl = post.getPostImgUrl().toString();
+                        databaseReferenceUser.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String username = snapshot.child(firebaseUser.getUid().toString()).child("username").getValue() + "";
+                                PlaceholderContent.PlaceholderItem obj = new PlaceholderContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
+                                PlaceholderContent.ITEMS.add(obj);
+                            }
 
-                    CreatePost post = snapshot.getValue(CreatePost.class);
-                    String title = post.getTitle().toString();
-                    String date = post.getDate().toString();
-                    String descp = post.getDescription();
-                    String status = post.getStatus().toString();
-                    String location = post.getLocation().toString();
-                    String userid = post.getUid().toString();
-                    String contact = post.getContact().toString();
-                    String username = post.getUsername().toString();
-                    String imageUrl = post.getPostImgUrl().toString();
-                    PlaceholderContent.PlaceholderItem obj = new PlaceholderContent.PlaceholderItem(uid + "", title + "", status + "", descp + "", date + "", location + "", username + "", imageUrl + "", contact);
-                    PlaceholderContent.ITEMS.add(obj);
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
+                            }
+                        });
 
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        }
 
                 }
 
@@ -256,9 +279,7 @@ public class home extends AppCompatActivity {
                         Map.replace(R.id.fragment_container_view_tag, new MapsFragment0());
                         Map.commit();
                         break;
-
                     case 3:
-
                         FragmentTransaction Profile = getSupportFragmentManager().beginTransaction();
                         Profile.replace(R.id.fragment_container_view_tag, new ProfielFragment());
                         Profile.commit();
@@ -331,5 +352,11 @@ public class home extends AppCompatActivity {
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 
 }

@@ -39,7 +39,6 @@
                 android:padding="1dp"
                 android:layout_marginStart="10dp"
                 app:shapeAppearance="@style/Circular"
-                android:background="@color/black"
                 android:id="@+id/toolbatAvatar"
                 android:layout_gravity="start"
                 />

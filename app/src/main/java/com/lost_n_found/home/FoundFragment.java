@@ -23,6 +23,7 @@ public class FoundFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
+    public  static MyFoundItemRecyclerViewAdapter myFoundItemRecyclerViewAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -64,7 +65,8 @@ public class FoundFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyFoundItemRecyclerViewAdapter(PlaceholderFoundContent.ITEMS,getContext()));
+            myFoundItemRecyclerViewAdapter = new MyFoundItemRecyclerViewAdapter(PlaceholderFoundContent.ITEMS,getContext());
+            recyclerView.setAdapter(myFoundItemRecyclerViewAdapter);
 
         }
         return view;

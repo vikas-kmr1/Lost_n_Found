@@ -1,54 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:elevation="160dp"
     android:background="?android:attr/selectableItemBackground"
     android:backgroundTint="@color/quantum_bluegrey500"
-    android:focusable="true"
     android:clickable="true"
+    android:elevation="160dp"
+    android:focusable="true"
+    android:orientation="horizontal"
     app:barrierMargin="20dp">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="1dp">
+
     <com.google.android.material.card.MaterialCardView
-    android:layout_width="match_parent"
-    android:id="@+id/linearLayoutRecycler"
-    android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:background="@drawable/textbox"
-    android:clickable="true"
-    android:elevation="5dp"
-    android:focusable="true"
-    android:padding="1dp"
-    app:cardCornerRadius="15dp">
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_margin="5dp"
-        android:padding="3dp"
-        android:id="@+id/avatarImg"
-        android:layout_width="80dp"
-        android:layout_gravity="center_vertical"
-        android:layout_height="80dp"
-        android:background="@color/quantum_cyan200"
-        app:shapeAppearance="@style/Circular"/>
-
-    <LinearLayout
+        android:id="@+id/linearLayoutRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingEnd="5dp"
-        android:layout_gravity="center">
+        android:layout_margin="2dp"
+        android:background="@drawable/textbox"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:padding="1dp"
+        app:cardCornerRadius="15dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:layout_gravity="center"
-        android:textAppearance="?attr/textAppearanceListItem" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatarImg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:elevation="5dp"
+                android:padding="3dp"
+                app:shapeAppearance="@style/Circular" />
 
-    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="5dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

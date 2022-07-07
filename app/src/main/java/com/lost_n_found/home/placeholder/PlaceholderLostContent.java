@@ -1,6 +1,7 @@
 package com.lost_n_found.home.placeholder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,8 @@ public class PlaceholderLostContent {
         public final String title;
         public final String status;
         public final String description;
-        public final String date;
+        public final Date date;
+        public final String dateStr;
         public final String location;
         public final String lostBy;
         public final String imageUrl;
@@ -51,12 +53,13 @@ public class PlaceholderLostContent {
 
 
 
-        public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String lostBy ,String imageUrl,String contact,String avatar) {
+        public PlaceholderItem(String uid, String title,String status, String description, Date date, String location,String lostBy ,String imageUrl,String contact,String avatar,String dateStr) {
             this.uid = uid;
             this.title = title;
             this.status = status;
             this.description = description;
             this.date = date;
+            this.dateStr = dateStr;
             this.location = location;
             this.lostBy = lostBy;
             this.imageUrl = imageUrl;

@@ -72,13 +72,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTitle">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/postImg"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:layout_margin="1dp"
             android:elevation="20dp"
-            app:cardBackgroundColor="#093D78"
+
             app:cardCornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -92,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:background="@color/quantum_googgreen50"
                 android:src="@drawable/augn_logo"
                 android:visibility="visible"
                 app:shapeAppearance="@style/Rectangulat"/>
@@ -100,6 +106,7 @@
 
 
         </androidx.cardview.widget.CardView>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </LinearLayout>
 

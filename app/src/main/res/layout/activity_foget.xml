@@ -4,6 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.FogetActivity">
+    tools:context=".login.FogetActivity"
 
+    android:background="@color/quantum_grey900">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarForget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:elevation="10dp"
+        android:theme="@style/Theme.Lost_n_Found.AppBarOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:title="Password Recovery"
+        app:titleTextColor="@color/white" />
+
+
+    <ImageView
+        android:layout_width="403dp"
+        android:layout_height="500dp"
+        android:elevation="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.30"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:lottie_autoPlay="true"
+        app:lottie_imageAssetsFolder="images"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/login_animation" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:elevation="20sp"
+        android:background="@drawable/login_curve"
+        android:orientation="vertical"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="center"
+            android:elevation="25dp"
+            android:textColor="@color/black"
+            android:text="Forget Password"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/emailForget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/edit_text_design"
+            android:elevation="12dp"
+            android:hint="Enter registered email"
+            android:inputType="textEmailSubject"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/ic_launcher_background"
+            android:textSize="20dp"
+            app:layout_constraintVertical_bias=".4"
+            app:layout_constraintWidth_percent=".8" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="#1C1B1B"
+            android:elevation="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/btn_design"
+            android:id="@+id/reset_btn"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginTop="35dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pass"
+            app:layout_constraintWidth_percent=".8" />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

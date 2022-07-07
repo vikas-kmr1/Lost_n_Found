@@ -49,6 +49,7 @@ public class PlaceholderContent {
         public final String contact;
 
 
+
         public PlaceholderItem(String uid, String title,String status, String description, String date, String location,String username,String imageUrl,String contact) {
             this.uid = uid;
             this.title = title;

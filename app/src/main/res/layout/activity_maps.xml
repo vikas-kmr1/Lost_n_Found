@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="43dp"
+        android:layout_marginBottom="58dp"
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -81,6 +81,8 @@
 
 
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
         android:layout_width="55sp"
@@ -94,12 +96,10 @@
         map:layout_constraintHorizontal_bias="0.98"
         map:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="#FFE7EDE7"
-
-
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.78"
+        map:layout_constraintVertical_bias="0.75"
         android:contentDescription="getting current location" >
- </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <ImageView
         android:layout_width="35dp"
@@ -114,7 +114,7 @@
         map:layout_constraintHorizontal_bias="0.988"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.775"
+        map:layout_constraintVertical_bias="0.748"
         />
 
 
@@ -131,40 +131,78 @@
         map:layout_constraintHorizontal_bias="0.98"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.68"
+        map:layout_constraintVertical_bias="0.65"
         android:elevation="@dimen/cardview_default_elevation"
         android:contentDescription="getting current location" />
 
 
 
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_Tab"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/searchtab_design"
-        android:elevation="1dp"
-        android:focusable="true"
-        android:autofillHints="name"
-        android:clickable="true"
-        map:queryHint="Search here"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:maxWidth="550dp"
-        android:padding="8dp"
-
-        map:searchIcon="@android:drawable/ic_menu_search"
-        map:closeIcon="@android:drawable/ic_menu_close_clear_cancel"
-        map:iconifiedByDefault="false"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         map:layout_constraintBottom_toBottomOf="@id/mapF"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.4"
         map:layout_constraintTop_toBottomOf="@+id/toolbar"
-        map:layout_constraintVertical_bias="0.0" />
+        map:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:tint="@color/white"
+            android:elevation="2dp"
+            android:src="@drawable/ic_twotone_search_24"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            map:shapeAppearance="@style/Circular"
+            android:layout_centerInParent="true"/>
+
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/search_Tab"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColorHint="#E6DEDE"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10sp"
+            android:autofillHints="search"
+            android:background="@drawable/searchtab_design"
+            android:completionThreshold="1"
+            android:elevation="1dp"
+            android:focusable="true"
+            android:gravity="start|center_vertical"
+            android:hint="search"
+            android:inputType="text"
+            android:maxWidth="550dp"
+            android:maxLength="27"
+            android:paddingStart="38dp"
+            android:paddingEnd="38dp"
+            android:popupBackground="@drawable/popup_bg"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="25dp"
+            android:layout_height="22dp"
+            android:id="@+id/clear"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            android:elevation="1dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_sharp_close_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="22dp"
+            map:shapeAppearance="@style/Circular"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
 
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 

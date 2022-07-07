@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +35,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
@@ -65,8 +72,10 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
     private static final String ARG_PARAM2 = "param2";
     public DrawerLayout drawerLayout;
     private FirebaseAuth mAuth;
+    public ShimmerFrameLayout shimmerFrameLayout;
     TabLayout tabLayout;
     ViewPager  viewPager;
+    public static  ImageView msgNotify;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -112,6 +121,8 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
 
         mAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
@@ -171,6 +182,14 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
         ExtendedFloatingActionButton newPost = root.findViewById(R.id.newPost);
+        msgNotify = root.findViewById(R.id.msgNotify);
+
+        if(home.notification){
+            msgNotify.setVisibility(View.VISIBLE);
+        }
+        else if(!home.notification){
+            msgNotify.setVisibility(View.INVISIBLE);
+        }
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -185,6 +204,8 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         View headerLayout = navigationView.inflateHeaderView(R.layout.drawer_headert);
         drawer_username = headerLayout.findViewById(R.id.drawer_username);
          userdp = headerLayout.findViewById(R.id.ham_head_img);
+        shimmerFrameLayout = headerLayout.findViewById(R.id.shimmer_view_container);
+        shimmerFrameLayout.startShimmerAnimation();
 
 
         Toolbar toolbar = root.findViewById(R.id.toolbar);
@@ -282,7 +303,18 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
         try {
 
-                    Glide.with(getContext()).load(avatarUrl).into(userdp);
+                    Glide.with(getContext()).load(avatarUrl).listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            shimmerFrameLayout.stopShimmerAnimation();
+                            return false;
+                        }
+                    }).into(userdp);
 
         } catch (Exception e) {
             e.printStackTrace();

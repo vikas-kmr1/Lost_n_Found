@@ -3,6 +3,7 @@ package com.lost_n_found.home.chatMessages;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.lost_n_found.R;
 import com.lost_n_found.databinding.FragmentChatBinding;
 import com.lost_n_found.home.chatMessages.placeholder.PlaceholderChatContent;
@@ -101,9 +108,21 @@ public class ChatFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+            holder.mShimmer.startShimmerAnimation();
             holder.mItem = mValues.get(position);
             holder.mName.setText(mValues.get(position).name);
-            Glide.with(context).load(mValues.get(position).avatar).into(holder.mAvatar);
+            Glide.with(context).load(mValues.get(position).avatar).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                   holder.mShimmer.stopShimmerAnimation();
+                    return false;
+                }
+            }).into(holder.mAvatar);
 
 
             holder.itemView.findViewById(R.id.linearLayoutRecycler).setOnClickListener(new View.OnClickListener() {
@@ -127,11 +146,13 @@ public class ChatFragment extends Fragment {
             public final TextView mName;
             public final ImageView mAvatar;
             public PlaceholderChatContent.PlaceholderItem mItem;
+            public ShimmerFrameLayout mShimmer;
 
             public ViewHolder(FragmentChatBinding binding) {
                 super(binding.getRoot());
                 mName = binding.name;
                 mAvatar = binding.avatarImg;
+                mShimmer = binding.shimmerViewContainer;
             }
 
 

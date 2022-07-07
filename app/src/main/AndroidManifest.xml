@@ -37,18 +37,17 @@
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lost_n_Found">
-
-<!--        android:largeHeap="true"-->
-<!--        android:hardwareAccelerated="false"-->
-
+        <activity
+            android:name=".login.FogetActivity"
+            android:exported="false" />
         <activity
             android:name=".home.chatMessages.chatActivity"
             android:exported="false"
-             android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.chatMessages.MessagesActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.PostDetails"
             android:exported="false"
@@ -85,10 +84,10 @@
             android:exported="true"
             android:screenOrientation="portrait">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".login.LoginActivity"

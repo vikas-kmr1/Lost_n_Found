@@ -11,6 +11,7 @@ public class CreatePost {
     public String uid ;
     public String avatar ;
 
+
     public String getPostImgUrl() {
         return postImgUrl;
     }

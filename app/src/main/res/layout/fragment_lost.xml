@@ -10,99 +10,109 @@
     android:focusable="true"
     android:orientation="horizontal">
 
-    <com.google.android.material.card.MaterialCardView
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/linearLayoutRecycler"
-        android:layout_margin="2dp"
-        android:background="@drawable/textbox"
-        android:clickable="true"
-        android:elevation="5dp"
-        android:focusable="true"
-        android:padding="1dp"
-        app:cardCornerRadius="15dp">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/linearLayoutRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageLost"
-                android:layout_width="105dp"
-                android:layout_height="105dp"
-                android:layout_gravity="top|center"
-                android:layout_margin="2dp"
-                android:src="@drawable/augn_logo"
-                app:layout_constraintBottom_toTopOf="@id/contentTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/Rectangulat"  />
-
-            <TextView
-                android:id="@+id/contentTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="4dp"
-                android:maxLines="1"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/LostByTitle"
-                app:layout_constraintTop_toBottomOf="@id/imageLost" />
-
-            <TextView
-                android:id="@+id/LostByTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:padding="1dp"
-                android:layout_gravity="left"
-                android:textSize="15dp"
-                android:text="Lost By:"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toStartOf="@id/LostByText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/contentTitle" />
-
-            <TextView
-                android:maxLines="1"
-                android:id="@+id/LostByText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="2dp"
-                android:textSize="15dp"
-                android:text="N/A"
-                android:maxLength="12"
-                android:textAppearance="?attr/textAppearanceListItem"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/LostByTitle"
-                app:layout_constraintTop_toBottomOf="@id/contentTitle" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <TextView
-            android:id="@+id/more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
+            android:layout_height="200dp"
             android:layout_margin="2dp"
-            android:text="more..."
-            />
-        <TextView
-            android:id="@+id/dateText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:layout_margin="4dp"
-            android:text="xx/xx/xxxx"
-            />
-    </com.google.android.material.card.MaterialCardView>
+            android:background="@drawable/textbox"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:padding="1dp"
+            app:cardCornerRadius="15dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageLost"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_gravity="top|center"
+                    android:layout_margin="2dp"
+                    android:src="@drawable/augn_logo"
+                    app:layout_constraintBottom_toTopOf="@id/contentTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/Rectangulat" />
+
+                <TextView
+                    android:id="@+id/contentTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/LostByTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageLost" />
+
+                <TextView
+                    android:id="@+id/LostByTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_margin="2dp"
+                    android:padding="1dp"
+                    android:text="Lost By:"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toStartOf="@id/LostByText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/contentTitle" />
+
+                <TextView
+                    android:id="@+id/LostByText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:maxLength="12"
+                    android:maxLines="1"
+                    android:text="N/A"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/LostByTitle"
+                    app:layout_constraintTop_toBottomOf="@id/contentTitle" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="2dp"
+                android:text="more..." />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_margin="4dp"
+                android:text="xx/xx/xxxx" />
+        </com.google.android.material.card.MaterialCardView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

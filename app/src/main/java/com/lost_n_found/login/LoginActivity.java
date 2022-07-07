@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements TabLayout.OnTabS
         setContentView(R.layout.activity_login);
 
 
-
+             //ToDo
             // Configure Google Sign In
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
