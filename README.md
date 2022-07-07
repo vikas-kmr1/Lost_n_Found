@@ -42,10 +42,6 @@ https://user-images.githubusercontent.com/73611313/171228674-302dae8e-182c-45d0-
 
 
 
-## Currently working on this 
-<img src ="https://github.com/vickyrules/userContents/blob/09a2e8e32c8ad3e27251bdd23307e1a94a88bc4c/61075-programming.gif"/>
-
-
  # Made with 💖 in Android studio
  
  ## Powered by firebase and Google Cloud.
