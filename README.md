@@ -6,7 +6,8 @@
 |![image1](https://user-images.githubusercontent.com/73611313/177810736-30e9d4b3-33c5-4007-a602-3b16d262d3f9.jpeg)|![image2](https://user-images.githubusercontent.com/73611313/177810753-7c2df37e-5e19-41f3-b01c-097663f06684.jpeg)|![image1](https://user-images.githubusercontent.com/73611313/177814080-2d698e10-a9d2-45ec-b779-c5707642a8e3.jpeg)|
 
 
-
- # Made with 💖 in Android studio
+<div style ="align-item:center">
+ <h3> Made with 💖 in Android studio</h3>
  
- ## Powered by firebase and Google Cloud.
+  <h4>Powered by firebase and Google Cloud </h4>
+  </div>
