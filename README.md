@@ -11,6 +11,16 @@
   <h4>Powered by firebase and Google Cloud</h4> 
  </div>
 
+### How to run in local system:
+1. <a href ="https://developer.android.com/studio?gclid=CjwKCAjw2rmWBhB4EiwAiJ0mtY5KqsTzANVizpit9G2vV_C4M76XDAwrLw5mUao_IH9F_JQXA7926RoCDAgQAvD_BwE&gclsrc=aw.ds">Download & install Android Studio</a> 
+2. <a href = "https://www.oracle.com/java/technologies/downloads/archive/">Download Java SE-11 or above</a>
+3. Clone the Repository:
+   ~~~
+   git clone https://github.com/vickyrules/Lost_n_Found.git
+   ~~~
+4. 
+
+
 
 # Contributors:
 ![](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
