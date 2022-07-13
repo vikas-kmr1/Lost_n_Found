@@ -29,11 +29,12 @@
 6. Click on run.
 
 
-
+# Learning Resources:
+<a href = "https://github.com/vickyrules/OIBSIP/blob/main/RESOURCES.md">open</a>
 
 # Contributors:
 ![](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
-
+"
 <a href="https://github.com/vickyrules/Lost_n_Found/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=vickyrules/Lost_n_Found" />
 </a>
