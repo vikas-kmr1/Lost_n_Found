@@ -34,7 +34,7 @@
 
 # Contributors:
 ![](https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif)
-"
+
 <a href="https://github.com/vickyrules/Lost_n_Found/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=vickyrules/Lost_n_Found" />
 </a>
@@ -43,7 +43,7 @@
 
 
 <div align = "center">
-  <h3> Made with 💖 in Android studio</h3
+  <h3> Made with 💖 in Android studio</h3>
   <h4>Powered by firebase and Google Cloud</h4> 
  </div>
  
