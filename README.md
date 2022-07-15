@@ -8,16 +8,19 @@
 # Download the App:
 <a href="https://bit.ly/3cceifO">Download</a>
 
-# How to run in local system:
-1. <a href ="https://developer.android.com/studio?gclid=CjwKCAjw2rmWBhB4EiwAiJ0mtY5KqsTzANVizpit9G2vV_C4M76XDAwrLw5mUao_IH9F_JQXA7926RoCDAgQAvD_BwE&gclsrc=aw.ds">Download & install Android Studio</a> 
-2. <a href = "https://www.oracle.com/java/technologies/downloads/archive/">Download Java SE-11 or above</a>
-3. <a href = "https://gitforwindows.org/">install git </a>
-4. Clone the Repository:
+# How to run in local system || How to Contribute :
+- <a href ="https://developer.android.com/studio?gclid=CjwKCAjw2rmWBhB4EiwAiJ0mtY5KqsTzANVizpit9G2vV_C4M76XDAwrLw5mUao_IH9F_JQXA7926RoCDAgQAvD_BwE&gclsrc=aw.ds">Download & install Android Studio</a> 
+- <a href = "https://www.oracle.com/java/technologies/downloads/archive/">Download Java SE-11 or above</a>
+- <a href = "https://gitforwindows.org/">install git </a>
+- Fork [this](https://github.com/vickyrules/Lost_n_Found/) repository.
+    Click on the <a href="https://github.com/vickyrules/Lost_n_Found/"><img width = "18px" src="https://user-images.githubusercontent.com/73611313/179143053-bdd614c9-3684-4039-8395-6d693254e69d.png"></a> symbol at the top right corner.
+
+- Clone the Repository:
    ~~~
    git clone https://github.com/vickyrules/Lost_n_Found.git
    ~~~
-4. Open Android Studio and import project.
-5. Connect a physical Device or create a Emulator:
+- Open Android Studio, Navigate to the project directory and import/open project.
+- Connect a physical Device or create a Emulator:
     ####  How To Create a AVD
   ```
 	1.Open  the  AVD  (Android _Virtual _Device)  Manager  and  then  clicking  Tools → AVD   Manager.
@@ -27,7 +30,29 @@
 	5.Change  AVD  properties  as  you needed  and  then  click  Finish.
 	
   ```
-6. Click on run.
+- Click on run.
+
+* Make all changes of source code in new branch.
+  
+<img src="https://user-images.githubusercontent.com/74819092/124509254-3faa9c00-ddef-11eb-9fd5-4e2ca9ee64cb.png">
+ </p>
+ 
+* Stage your changes and commit
+
+```bash
+#Add changes to Index
+git add .
+
+#Commit to the local repo
+git commit -m "<your_commit_message>"
+```
+- Push your local commits to the remote repo.
+
+```bash
+git push
+```
+- Create a [PR](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)  which will be promptly reviewed and suggestions would be added to improve it.
+- Add Screenshots to help us know what this Script is all about.
 
 
 # Learning Resources:
