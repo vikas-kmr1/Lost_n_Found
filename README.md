@@ -6,7 +6,8 @@
 |![image1](https://user-images.githubusercontent.com/73611313/177915473-deec76e3-0a74-4cb2-a744-9294c7b866bf.jpeg)|![image2](https://user-images.githubusercontent.com/73611313/177810753-7c2df37e-5e19-41f3-b01c-097663f06684.jpeg)|![image1](https://user-images.githubusercontent.com/73611313/177814080-2d698e10-a9d2-45ec-b779-c5707642a8e3.jpeg)|
 
 # Download the App:
-<a href="https://bit.ly/3cceifO">Download</a>
+<a href="https://bit.ly/3cceifO"> <img width="20%" src="https://user-images.githubusercontent.com/73611313/185760386-00e5a156-7cf9-4c18-8615-9a0393fdb972.png"/>
+</a>
 
 # How to run in local system || How to Contribute :
 - <a href ="https://developer.android.com/studio?gclid=CjwKCAjw2rmWBhB4EiwAiJ0mtY5KqsTzANVizpit9G2vV_C4M76XDAwrLw5mUao_IH9F_JQXA7926RoCDAgQAvD_BwE&gclsrc=aw.ds">Download & install Android Studio</a> 
