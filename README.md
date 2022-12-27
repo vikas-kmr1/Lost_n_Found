@@ -1,10 +1,9 @@
 ****⚠️Temporarily Un-Available on PlayStore****
 
 ****Direct Download:****
-<a href="https://github.com/vickyrules/Lost_n_Found/blob/master/app/release/app-release.apk" download = "app-release.apk">
+<a href="https://github.com/vickyrules/Lost_n_Found/blob/master/app/release/app-release.apk" download>
  Download the app</a>
 
-https://github.com/vickyrules/Lost_n_Found/blob/master/app/release/app-release.apk
 # Lost_n_Found App
 
 |![image1](https://user-images.githubusercontent.com/73611313/177809372-202dfbd2-00be-4c6c-acd9-65c960249ae6.jpeg)|![image2](https://user-images.githubusercontent.com/73611313/177809450-70b9a84a-6521-4585-af53-83db44940bbe.jpeg)|![image3](https://user-images.githubusercontent.com/73611313/177809606-82e81353-ac11-46cf-893e-0bf4fcfcb150.jpeg)|
